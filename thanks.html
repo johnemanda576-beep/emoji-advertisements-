@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Order Receipt — Emoji Ads &amp; Stationery</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Segoe UI', system-ui, sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; padding: 20px; color: #333; }
+  .wrap { max-width: 480px; margin: 0 auto; }
+  .top { text-align: center; color: #fff; margin-bottom: 20px; }
+  .top .emoji { font-size: 3rem; display: inline-block; animation: bounce 1.4s infinite; }
+  @keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+  .top h1 { font-size: 1.55rem; margin-top: 8px; }
+  .top p { opacity: .9; font-size: .9rem; }
+  .receipt { background: #fff; border-radius: 16px; padding: 24px 20px; box-shadow: 0 20px 50px rgba(0,0,0,.25); }
+  .shop-name { text-align: center; font-size: 1.15rem; font-weight: 700; color: #764ba2; }
+  .shop-sub  { text-align: center; font-size: .78rem; color: #999; margin-bottom: 14px; }
+  .divider   { border-top: 1px dashed #ccc; margin: 12px 0; }
+  .meta { font-size: .84rem; color: #555; line-height: 1.75; }
+  .meta b { color: #333; }
+  .items { margin-top: 8px; }
+  .item-row { display: flex; justify-content: space-between; font-size: .87rem; padding: 5px 0; border-bottom: 1px dotted #eee; }
+  .item-row .name { flex: 1; padding-right: 8px; }
+  .item-row .qty  { color: #888; min-width: 34px; text-align: center; }
+  .item-row .amt  { font-family: monospace; min-width: 64px; text-align: right; }
+  .total-row { display: flex; justify-content: space-between; margin-top: 12px; padding-top: 10px; border-top: 2px solid #333; font-weight: 700; font-size: 1.1rem; color: #764ba2; }
+  .total-row span:last-child { font-family: monospace; }
+  .thanks { text-align: center; font-size: .8rem; color: #999; margin-top: 16px; }
+  .no-order { text-align: center; color: #999; font-style: italic; padding: 24px 0; }
+  .actions { margin-top: 18px; }
+  .btn { display: block; width: 100%; padding: 13px; border-radius: 10px; text-decoration: none; font-weight: 600; font-size: .95rem; text-align: center; margin-top: 10px; cursor: pointer; border: none; font-family: inherit; transition: transform .15s, background .2s; }
+  .btn:active { transform: scale(.98); }
+  .btn-print { background: #27ae60; color: #fff; }
+  .btn-tg    { background: #229ED9; color: #fff; }
+  .btn-tel   { background: #f39c12; color: #fff; }
+  .btn-back  { background: #667eea; color: #fff; }
+  @media print {
+    body { background: #fff; padding: 0; }
+    .top, .actions { display: none !important; }
+    .receipt { box-shadow: none; border-radius: 0; padding: 0; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <span class="emoji">🧾</span>
+    <h1>Order Confirmed</h1>
+    <p>Here is your receipt</p>
+  </div>
+  <div class="receipt" id="receipt">
+    <div class="shop-name">Emoji Ads &amp; Stationery</div>
+    <div class="shop-sub">Thank you for your order</div>
+    <div class="divider"></div>
+    <div class="meta" id="meta"></div>
+    <div class="divider"></div>
+    <div class="items" id="items"></div>
+    <div class="total-row"><span>Total</span><span id="totalAmt">$0.00</span></div>
+    <div class="thanks">Please keep this receipt for your records.</div>
+  </div>
+  <div class="actions">
+    <button class="btn btn-print" onclick="window.print()">🖨️ Print / Save as PDF</button>
+    <a class="btn btn-tg" id="tgBtn" href="https://t.me/johnemanda" target="_blank" rel="noopener">💬 Follow up on Telegram</a>
+    <a class="btn btn-tel" href="tel:0919878004">📞 Call 0919878004</a>
+    <a class="btn btn-back" href="index.html">⬅️ Back to Shop</a>
+  </div>
+</div>
+<script>
+(function () {
+  const raw = localStorage.getItem('lastOrder');
+  const meta = document.getElementById('meta');
+  const items = document.getElementById('items');
+  const totalEl = document.getElementById('totalAmt');
+  const tgBtn = document.getElementById('tgBtn');
+  if (!raw) {
+    document.getElementById('receipt').innerHTML = '<p class="no-order">No recent order found on this device.</p>';
+    return;
+  }
+  const order = JSON.parse(raw);
+  const d = new Date(order.date);
+  meta.innerHTML = `
+    <div><b>Order #:</b> ${order.orderNo}</div>
+    <div><b>Date:</b> ${d.toLocaleString()}</div>
+    ${order.name  ? `<div><b>Name:</b> ${order.name}</div>`  : ''}
+    ${order.email ? `<div><b>Email:</b> ${order.email}</div>` : ''}
+    ${order.phone ? `<div><b>Phone:</b> ${order.phone}</div>` : ''}
+  `;
+  let total = 0;
+  items.innerHTML = order.items.map(it => {
+    const line = it.price * it.qty;
+    total += line;
+    return `
+      <div class="item-row">
+        <span class="name">${it.emoji || ''} ${it.name}</span>
+        <span class="qty">×${it.qty}</span>
+        <span class="amt">$${line.toFixed(2)}</span>
+      </div>`;
+  }).join('');
+  totalEl.textContent = '$' + total.toFixed(2);
+  const msg = encodeURIComponent(`Hi! I just placed order ${order.orderNo} on your Emoji Ads & Stationery shop. Total: $${total.toFixed(2)}`);
+  tgBtn.href = `https://t.me/johnemanda?text=${msg}`;
+})();
+</script>
+</body>
+</html>
