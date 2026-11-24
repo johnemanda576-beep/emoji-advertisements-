@@ -3,183 +3,449 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Emoji Ads &amp; Stationery Shop</title>
+<title>EMOJI ADVERTISING | Printing, Stickers & Stationery</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
 <style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { font-family: 'Segoe UI', system-ui, sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; padding: 20px; color: #333; }
-  .container { max-width: 1100px; margin: 0 auto; }
-  header { text-align: center; color: #fff; margin-bottom: 30px; }
-  header h1 { font-size: 2.1rem; margin-bottom: 8px; }
-  header p { opacity: .92; margin-bottom: 14px; }
-  .tg-link { display: inline-block; background: #229ED9; color: #fff; text-decoration: none; padding: 10px 18px; border-radius: 999px; font-weight: 600; font-size: .92rem; transition: background .2s; }
-  .tg-link:hover { background: #1b82b3; }
-  .section-title { color: #fff; font-size: 1.35rem; margin: 28px 0 14px; border-left: 4px solid #fff; padding-left: 10px; }
-  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 18px; }
-  .card { background: #fff; border-radius: 14px; padding: 18px; box-shadow: 0 8px 24px rgba(0,0,0,.15); transition: transform .2s; display: flex; flex-direction: column; align-items: center; text-align: center; }
-  .card:hover { transform: translateY(-4px); }
-  .card .emoji { font-size: 3rem; margin-bottom: 10px; }
-  .card h3 { font-size: .98rem; margin-bottom: 6px; }
-  .card .price { color: #764ba2; font-weight: 700; font-size: 1.1rem; margin-bottom: 12px; }
-  .card .price small { color: #999; font-weight: 400; font-size: .72rem; }
-  button { background: #667eea; color: #fff; border: none; padding: 10px 16px; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: .9rem; width: 100%; font-family: inherit; transition: background .2s; }
-  button:hover { background: #5568d3; }
-  button.remove { background: #e74c3c; }
-  button.remove:hover { background: #c0392b; }
-  .cart-panel { background: #fff; border-radius: 14px; padding: 22px; margin-top: 30px; box-shadow: 0 8px 24px rgba(0,0,0,.15); }
-  .cart-panel h2 { margin-bottom: 14px; color: #444; font-size: 1.25rem; }
-  .cart-panel h3 { margin: 22px 0 12px; color: #444; font-size: 1.05rem; }
-  .cart-item { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 8px 0; border-bottom: 1px solid #eee; font-size: .92rem; }
-  .cart-item:last-child { border-bottom: none; }
-  .cart-item .amt { font-family: monospace; }
-  .total { margin-top: 14px; font-size: 1.2rem; font-weight: 700; text-align: right; color: #764ba2; }
-  .empty { color: #999; font-style: italic; }
-  #orderForm label { display: block; font-size: .85rem; font-weight: 600; color: #555; margin-bottom: 5px; }
-  #orderForm input[type="text"], #orderForm input[type="email"], #orderForm input[type="tel"] { width: 100%; padding: 10px; margin-bottom: 12px; border: 1px solid #ccc; border-radius: 8px; font-size: .92rem; font-family: inherit; }
-  #orderForm input:focus { outline: 2px solid #667eea; border-color: transparent; }
-  #orderForm button[type="submit"] { background: #27ae60; margin-top: 6px; }
-  #orderForm button[type="submit"]:hover { background: #219150; }
-  .contact-note { margin-top: 20px; padding-top: 16px; border-top: 1px dashed #ddd; font-size: .87rem; color: #666; text-align: center; line-height: 1.8; }
-  .contact-note a { color: #229ED9; font-weight: 600; text-decoration: none; }
-  .contact-note a.tel { color: #27ae60; }
+  /* --- BRAND COLORS & VARIABLES --- */
+  :root {
+    --yellow: #FFD700;
+    --orange: #FF8C00;
+    --black: #111111;
+    --dark-gray: #222222;
+    --white: #FFFFFF;
+    --light-bg: #F4F6F9;
+    --text-main: #333333;
+    --text-muted: #777777;
+    --border: #E0E0E0;
+    --sidebar-width: 260px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+  body { background-color: var(--light-bg); color: var(--text-main); display: flex; min-height: 100vh; overflow-x: hidden; }
+  a { text-decoration: none; color: inherit; }
+  ul { list-style: none; }
+
+  /* --- SIDEBAR / NAVIGATION --- */
+  .sidebar {
+    width: var(--sidebar-width); background-color: var(--black); color: var(--white);
+    position: fixed; top: 0; left: 0; height: 100vh; padding: 20px 0;
+    display: flex; flex-direction: column; transition: transform 0.3s ease; z-index: 1000;
+  }
+  .brand-logo { text-align: center; padding: 0 20px 20px; border-bottom: 1px solid var(--dark-gray); margin-bottom: 20px; }
+  .brand-logo h1 { font-size: 1.5rem; font-weight: 800; color: var(--yellow); display: flex; align-items: center; justify-content: center; gap: 5px; }
+  .brand-logo h1 span.smiley { background: var(--orange); color: var(--black); border-radius: 50%; width: 30px; height: 30px; display: inline-flex; align-items: center; justify-content: center; font-size: 1.2rem; }
+  .brand-logo p { font-size: 0.7rem; color: var(--text-muted); letter-spacing: 2px; margin-top: 5px; }
+
+  .nav-links { flex: 1; overflow-y: auto; }
+  .nav-links li a { display: flex; align-items: center; padding: 12px 25px; color: #CCC; font-size: 0.95rem; transition: 0.2s; border-left: 4px solid transparent; }
+  .nav-links li a:hover, .nav-links li a.active { background: var(--dark-gray); color: var(--yellow); border-left-color: var(--orange); }
+  .nav-links li a i { margin-right: 15px; font-style: normal; }
+
+  /* --- MOBILE HEADER --- */
+  .mobile-header { display: none; background: var(--black); color: var(--white); padding: 15px 20px; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 900; }
+  .menu-toggle { background: none; border: none; color: var(--yellow); font-size: 1.8rem; cursor: pointer; }
+
+  /* --- MAIN CONTENT AREA --- */
+  .main-content { margin-left: var(--sidebar-width); flex: 1; padding: 30px; min-height: 100vh; transition: margin 0.3s; }
+  .page-section { display: none; animation: fadeIn 0.4s ease; }
+  .page-section.active { display: block; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+  /* --- TYPOGRAPHY & BUTTONS --- */
+  h2.section-title { font-size: 1.8rem; font-weight: 800; color: var(--black); margin-bottom: 25px; display: flex; align-items: center; gap: 10px; }
+  .btn { background: var(--orange); color: var(--white); padding: 12px 24px; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; transition: 0.2s; display: inline-block; text-align: center; }
+  .btn:hover { background: #e67e00; transform: translateY(-2px); }
+  .btn-yellow { background: var(--yellow); color: var(--black); }
+  .btn-yellow:hover { background: #e6c200; }
+  .btn-outline { background: transparent; border: 2px solid var(--black); color: var(--black); }
+
+  /* --- HERO SECTION --- */
+  .hero { background: linear-gradient(135deg, var(--black) 0%, var(--dark-gray) 100%); border-radius: 20px; padding: 50px 30px; color: var(--white); text-align: center; margin-bottom: 30px; position: relative; overflow: hidden; }
+  .hero h1 { font-size: 2.5rem; font-weight: 800; margin-bottom: 15px; color: var(--yellow); line-height: 1.2; }
+  .hero p { font-size: 1.1rem; color: #DDD; margin-bottom: 25px; max-width: 600px; margin-inline: auto; }
+
+  /* --- GRIDS & CARDS --- */
+  .grid-container { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 20px; }
+  .card { background: var(--white); border-radius: 15px; padding: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); transition: 0.3s; display: flex; flex-direction: column; border: 1px solid var(--border); }
+  .card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+  .card .emoji-box { font-size: 3rem; text-align: center; margin-bottom: 15px; background: var(--light-bg); border-radius: 10px; padding: 20px 0; }
+  .card h3 { font-size: 1.1rem; margin-bottom: 8px; color: var(--black); }
+  .card .price { font-size: 1.2rem; font-weight: 800; color: var(--orange); margin-bottom: 15px; }
+  .card .price small { font-size: 0.8rem; color: var(--text-muted); font-weight: 400; }
+  
+  /* --- CALCULATORS --- */
+  .calc-box { background: var(--white); padding: 25px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); margin-bottom: 30px; }
+  .calc-box h3 { color: var(--black); margin-bottom: 15px; border-bottom: 2px solid var(--yellow); display: inline-block; padding-bottom: 5px; }
+  .calc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 15px; }
+  .input-group label { display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 5px; color: var(--text-muted); }
+  .input-group input, .input-group select { width: 100%; padding: 12px; border: 1px solid var(--border); border-radius: 8px; font-size: 1rem; }
+  .calc-result { background: var(--black); color: var(--yellow); padding: 15px; border-radius: 8px; font-size: 1.2rem; font-weight: 800; text-align: center; margin-top: 15px; }
+
+  /* --- CART & FORMS --- */
+  .form-group { margin-bottom: 15px; }
+  .form-group label { display: block; font-size: 0.9rem; font-weight: 600; margin-bottom: 5px; }
+  .form-group input, .form-group textarea { width: 100%; padding: 12px; border: 1px solid var(--border); border-radius: 8px; font-family: inherit; }
+  .cart-item { display: flex; justify-content: space-between; align-items: center; background: var(--white); padding: 15px; border-radius: 10px; margin-bottom: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+  .cart-total { font-size: 1.4rem; font-weight: 800; color: var(--black); text-align: right; margin: 20px 0; padding-top: 20px; border-top: 2px dashed var(--border); }
+
+  /* --- RESPONSIVE MOBILE --- */
+  @media (max-width: 900px) {
+    body { flex-direction: column; }
+    .mobile-header { display: flex; }
+    .sidebar { transform: translateX(-100%); }
+    .sidebar.open { transform: translateX(0); }
+    .main-content { margin-left: 0; padding: 20px; }
+    .hero h1 { font-size: 1.8rem; }
+    .calc-grid { grid-template-columns: 1fr; }
+  }
 </style>
 </head>
 <body>
-<div class="container">
-  <header>
-    <h1>🎉 Emoji Ads &amp; Stationery 🖊️</h1>
-    <p>Custom emoji advertising + all your office stationery needs</p>
-    <a class="tg-link" href="https://t.me/johnemanda" target="_blank" rel="noopener">💬 Chat on Telegram — @johnemanda</a>
-  </header>
-  <h2 class="section-title">📣 Emoji Advertising</h2>
-  <div class="grid" id="adsGrid"></div>
-  <h2 class="section-title">✏️ Stationery Materials</h2>
-  <div class="grid" id="stationeryGrid"></div>
-  <div class="cart-panel">
-    <h2>🛒 Your Cart</h2>
-    <div id="cartItems"><p class="empty">Cart is empty</p></div>
-    <div class="total" id="total">Total: $0.00</div>
-    <h3>📋 Place Your Order</h3>
-    <form id="orderForm" action="https://api.web3forms.com/submit" method="POST">
-      <input type="hidden" name="access_key" value="e2897913-3afe-46d0-8c2b-2f88336a2394">
-      <input type="hidden" name="redirect" value="thanks.html">
-      <input type="hidden" name="order_details" id="orderDetailsInput">
-      <input type="hidden" name="subject" value="New order — Emoji Ads & Stationery">
-      <label for="customerName">Your Name</label>
-      <input type="text" name="name" id="customerName" required placeholder="Abebe Kebede">
-      <label for="customerEmail">Your Email</label>
-      <input type="email" name="email" id="customerEmail" required placeholder="you@example.com">
-      <label for="customerPhone">Your Phone (optional)</label>
-      <input type="tel" name="phone" id="customerPhone" placeholder="09XXXXXXXX">
-      <button type="submit">✅ Send Order</button>
-    </form>
-    <div class="contact-note">
-      Prefer to order directly?<br>
-      💬 Telegram: <a href="https://t.me/johnemanda" target="_blank" rel="noopener">@johnemanda</a><br>
-      📞 Call / SMS: <a class="tel" href="tel:0919878004">0919878004</a>
+
+  <!-- MOBILE HEADER -->
+  <header class="mobile-header">
+    <div class="brand-logo">
+      <h1>EMO<span class="smiley">☺</span></h1>
     </div>
-  </div>
-</div>
-<script>
-  const ads = [
-    { id: 'a1', emoji: '🚀', name: 'Emoji Rocket Banner', price: 15.00 },
-    { id: 'a2', emoji: '🎯', name: 'Target Emoji Ad', price: 12.00 },
-    { id: 'a3', emoji: '🔥', name: 'Fire Emoji Package', price: 18.50 },
-    { id: 'a4', emoji: '🌟', name: 'Star Emoji Campaign', price: 20.00 },
-    { id: 'a5', emoji: '❤️', name: 'Love Emoji Promo', price: 10.00 },
-    { id: 'a6', emoji: '🎊', name: 'Party Emoji Bundle', price: 22.00 }
-  ];
-  const stationery = [
-    { id: 's1', emoji: '✏️', name: 'Pencil (box of 12)', price: 4.50 },
-    { id: 's2', emoji: '🖊️', name: 'Ballpoint Pen (blue)', price: 1.20 },
-    { id: 's3', emoji: '📒', name: 'Notebook A5', price: 3.00 },
-    { id: 's4', emoji: '📐', name: 'Ruler Set', price: 2.75 },
-    { id: 's5', emoji: '🖇️', name: 'Paper Clips (50)', price: 1.50 },
-    { id: 's6', emoji: '🗂️', name: 'File Folder', price: 2.00 },
-    { id: 's7', emoji: '🖍️', name: 'Crayons (24)', price: 5.25 },
-    { id: 's8', emoji: '📏', name: 'Measuring Tape', price: 3.90 }
-  ];
-  const cart = {};
-  function renderGrid(list, containerId) {
-    document.getElementById(containerId).innerHTML = list.map(item => `
-      <div class="card">
-        <div class="emoji">${item.emoji}</div>
-        <h3>${item.name}</h3>
-        <div class="price">$${item.price.toFixed(2)} <small>each</small></div>
-        <button onclick="addToCart('${item.id}')">Add to Cart</button>
+    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+  </header>
+
+  <!-- SIDEBAR NAVIGATION -->
+  <aside class="sidebar" id="sidebar">
+    <div class="brand-logo">
+      <h1>EMO<span class="smiley">☺</span></h1>
+      <p>ADVERTISING</p>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#" class="active" onclick="navTo('home', this)"><i>🏠</i> Home</a></li>
+      <li><a href="#" onclick="navTo('stationery', this)"><i>✏️</i> Stationery Shop</a></li>
+      <li><a href="#" onclick="navTo('printing', this)"><i>🖨️</i> Printing Services</a></li>
+      <li><a href="#" onclick="navTo('stickers', this)"><i>🎨</i> Stickers & Design</a></li>
+      <li><a href="#" onclick="navTo('cart', this)"><i>🛒</i> My Cart</a></li>
+      <li><a href="#" onclick="navTo('contact', this)"><i>📞</i> Contact & Support</a></li>
+    </ul>
+  </aside>
+
+  <!-- MAIN CONTENT AREA -->
+  <main class="main-content">
+
+    <!-- 1. HOME PAGE -->
+    <section id="home" class="page-section active">
+      <div class="hero">
+        <h1>Your Ideas. Our Creativity.<br>Unlimited Possibilities.</h1>
+        <p>Ethiopia's premium destination for custom advertising, high-quality printing, and complete stationery supplies.</p>
+        <button class="btn btn-yellow" onclick="navTo('stationery', document.querySelector('.nav-links li:nth-child(2) a'))">Explore Our Products</button>
+        <button class="btn" onclick="navTo('printing', document.querySelector('.nav-links li:nth-child(3) a'))">Order Printing</button>
       </div>
-    `).join('');
-  }
-  function renderCart() {
-    const itemsDiv = document.getElementById('cartItems');
-    const totalDiv = document.getElementById('total');
-    const keys = Object.keys(cart);
-    if (keys.length === 0) {
-      itemsDiv.innerHTML = '<p class="empty">Cart is empty</p>';
-      totalDiv.textContent = 'Total: $0.00';
-      return;
+      
+      <h2 class="section-title">🔥 Featured Products</h2>
+      <div class="grid-container" id="home-featured">
+        <!-- Injected by JS -->
+      </div>
+    </section>
+
+    <!-- 2. STATIONERY SHOP -->
+    <section id="stationery" class="page-section">
+      <h2 class="section-title">✏️ Stationery Shop</h2>
+      <p style="margin-bottom: 20px; color: var(--text-muted);">Prices are listed in Ethiopian Birr (ETB).</p>
+      <div class="grid-container" id="stationery-grid">
+        <!-- Injected by JS -->
+      </div>
+    </section>
+
+    <!-- 3. PRINTING SERVICES & CALCULATORS -->
+    <section id="printing" class="page-section">
+      <h2 class="section-title">🖨️ Printing Services</h2>
+      
+      <!-- Banner Calculator -->
+      <div class="calc-box">
+        <h3>Banner Printing Calculator (200 ETB / m²)</h3>
+        <div class="calc-grid">
+          <div class="input-group">
+            <label>Width (meters)</label>
+            <input type="number" id="banner-width" value="1" min="0.5" step="0.1" oninput="calcBanner()">
+          </div>
+          <div class="input-group">
+            <label>Height (meters)</label>
+            <input type="number" id="banner-height" value="1" min="0.5" step="0.1" oninput="calcBanner()">
+          </div>
+          <div class="input-group">
+            <label>Quantity</label>
+            <input type="number" id="banner-qty" value="1" min="1" oninput="calcBanner()">
+          </div>
+        </div>
+        <div class="calc-result" id="banner-total">Total: 200 ETB</div>
+        <button class="btn" style="width: 100%; margin-top: 15px;" onclick="addCustomToCart('Custom Banner', document.getElementById('banner-total').innerText, 'printing')">Order Custom Banner</button>
+      </div>
+
+      <!-- Sticker Calculator -->
+      <div class="calc-box">
+        <h3>A4 Sticker Printing (17 ETB / Sheet)</h3>
+        <div class="calc-grid">
+          <div class="input-group">
+            <label>Number of A4 Sheets</label>
+            <input type="number" id="sticker-qty" value="1" min="1" oninput="calcSticker()">
+          </div>
+        </div>
+        <div class="calc-result" id="sticker-total">Total: 17 ETB</div>
+        <button class="btn" style="width: 100%; margin-top: 15px;" onclick="addCustomToCart('A4 Stickers', document.getElementById('sticker-total').innerText, 'printing')">Order A4 Stickers</button>
+      </div>
+    </section>
+
+    <!-- 4. STICKERS & DESIGN -->
+    <section id="stickers" class="page-section">
+      <h2 class="section-title">🎨 Sticker Marketplace</h2>
+      <div class="grid-container" id="sticker-grid">
+        <!-- Injected by JS -->
+      </div>
+    </section>
+
+    <!-- 5. CART & CHECKOUT -->
+    <section id="cart" class="page-section">
+      <h2 class="section-title">🛒 Your Cart</h2>
+      
+      <div style="display: grid; grid-template-columns: 1fr; gap: 30px; max-width: 800px;">
+        <div>
+          <div id="cart-items-container">
+            <p style="color: var(--text-muted);">Your cart is empty.</p>
+          </div>
+          <div class="cart-total" id="cart-total-display">Total: 0 ETB</div>
+        </div>
+
+        <!-- Order Form -->
+        <div class="calc-box">
+          <h3>Delivery & Contact Details</h3>
+          <form id="orderForm" action="https://api.web3forms.com/submit" method="POST">
+            <!-- YOUR WEB3FORMS KEY IS INSERTED HERE -->
+            <input type="hidden" name="access_key" value="e2897913-3afe-46d0-8c2b-2f88336a2394">
+            <input type="hidden" name="redirect" value="thanks.html">
+            <input type="hidden" name="subject" value="New Order from Emoji Advertising">
+            <input type="hidden" name="order_details" id="orderDetailsInput">
+
+            <div class="form-group">
+              <label>Full Name</label>
+              <input type="text" name="name" required placeholder="Abebe Kebede">
+            </div>
+            <div class="form-group">
+              <label>Phone Number</label>
+              <input type="tel" name="phone" required placeholder="0912345678">
+            </div>
+            <div class="form-group">
+              <label>Delivery City / Sub-city</label>
+              <input type="text" name="location" required placeholder="e.g., Addis Ababa, Bole">
+            </div>
+            <button type="submit" class="btn btn-yellow" style="width: 100%; font-size: 1.1rem;" onclick="prepareOrder(event)">Submit Order via Email</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. CONTACT & SUPPORT -->
+    <section id="contact" class="page-section">
+      <h2 class="section-title">📞 Contact & Support</h2>
+      <div class="grid-container">
+        <div class="card" style="text-align: center;">
+          <div class="emoji-box">💬</div>
+          <h3>Telegram</h3>
+          <p style="color: var(--text-muted); margin-bottom: 15px;">Fastest response for orders.</p>
+          <a href="https://t.me/johnemanda" target="_blank" class="btn">@johnemanda</a>
+        </div>
+        <div class="card" style="text-align: center;">
+          <div class="emoji-box">📞</div>
+          <h3>Call / SMS</h3>
+          <p style="color: var(--text-muted); margin-bottom: 15px;">Available 8:00 AM - 6:00 PM.</p>
+          <a href="tel:0919878004" class="btn">0919878004</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- JAVASCRIPT LOGIC -->
+  <script>
+    // --- DATA ---
+    const stationeryData = [
+      { id: 's1', name: 'BIC Ballpoint Pen', price: 45, emoji: '🖊️', cat: 'Writing' },
+      { id: 's2', name: 'Buna Blue Pen', price: 18, emoji: '🖊️', cat: 'Writing' },
+      { id: 's3', name: 'Drawing Pencil', price: 15, emoji: '✏️', cat: 'Writing' },
+      { id: 's4', name: 'Eraser', price: 18, emoji: '🧽', cat: 'School' },
+      { id: 's5', name: 'Pencil Sharpener', price: 21, emoji: '🔪', cat: 'School' },
+      { id: 's6', name: 'Ruler (30cm)', price: 45, emoji: '📏', cat: 'School' },
+      { id: 's7', name: 'Scissors', price: 180, emoji: '✂️', cat: 'Office' },
+      { id: 's8', name: 'Glue Stick', price: 68, emoji: '🖇️', cat: 'Office' },
+      { id: 's9', name: 'Exercise Book', price: 100, emoji: '📒', cat: 'Paper' },
+      { id: 's10', name: 'Colored Pencils (12pcs)', price: 85, emoji: '🖍️', cat: 'Art' },
+      { id: 's11', name: 'A4 Colored Paper (250)', price: 820, emoji: '📄', cat: 'Paper' }
+    ];
+
+    const stickerData = [
+      { id: 'st1', name: 'Ethiopian Legend Musician', price: 150, emoji: '🎤', cat: 'Music' },
+      { id: 'st2', name: 'Ethiopian Football Star', price: 150, emoji: '⚽', cat: 'Football' },
+      { id: 'st3', name: 'Motivational Quote Pack', price: 100, emoji: '🌟', cat: 'Other' },
+      { id: 'st4', name: 'Funny Meme Stickers', price: 120, emoji: '😂', cat: 'Other' }
+    ];
+
+    let cart = [];
+
+    // --- NAVIGATION ---
+    function navTo(sectionId, linkElement) {
+      document.querySelectorAll('.page-section').forEach(sec => sec.classList.remove('active'));
+      document.getElementById(sectionId).classList.add('active');
+      
+      if(linkElement) {
+        document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+        linkElement.classList.add('active');
+      }
+      
+      // Close mobile menu on navigate
+      document.getElementById('sidebar').classList.remove('open');
     }
-    let total = 0;
-    itemsDiv.innerHTML = keys.map(id => {
-      const it = cart[id];
-      const line = it.price * it.qty;
-      total += line;
-      return `
-        <div class="cart-item">
-          <span>${it.emoji} ${it.name} × ${it.qty}</span>
-          <span class="amt">$${line.toFixed(2)}</span>
-          <button class="remove" style="width:auto;padding:5px 12px;font-size:.78rem" onclick="removeFromCart('${id}')">Remove</button>
-        </div>`;
-    }).join('');
-    totalDiv.textContent = 'Total: $' + total.toFixed(2);
-  }
-  function addToCart(id) {
-    const product = ads.concat(stationery).find(p => p.id === id);
-    if (!product) return;
-    if (cart[id]) cart[id].qty++;
-    else cart[id] = { name: product.name, emoji: product.emoji, price: product.price, qty: 1 };
-    renderCart();
-  }
-  function removeFromCart(id) {
-    if (!cart[id]) return;
-    cart[id].qty--;
-    if (cart[id].qty <= 0) delete cart[id];
-    renderCart();
-  }
-  function getCartSummary() {
-    const keys = Object.keys(cart);
-    if (keys.length === 0) return null;
-    let total = 0;
-    let lines = '🛒 ORDER DETAILS\n\n';
-    keys.forEach(id => {
-      const it = cart[id];
-      const line = it.price * it.qty;
-      total += line;
-      lines += `${it.emoji} ${it.name} x${it.qty} = $${line.toFixed(2)}\n`;
-    });
-    lines += `\nTOTAL: $${total.toFixed(2)}`;
-    return { text: lines, total, items: keys.map(id => ({ ...cart[id] })) };
-  }
-  document.getElementById('orderForm').addEventListener('submit', function (e) {
-    const summary = getCartSummary();
-    if (!summary) {
-      e.preventDefault();
-      alert('Your cart is empty. Please add items before ordering.');
-      return;
+
+    function toggleMenu() {
+      document.getElementById('sidebar').classList.toggle('open');
     }
-    document.getElementById('orderDetailsInput').value = summary.text;
-    localStorage.setItem('lastOrder', JSON.stringify({
-      items: summary.items,
-      total: summary.total,
-      name: document.getElementById('customerName').value.trim(),
-      email: document.getElementById('customerEmail').value.trim(),
-      phone: document.getElementById('customerPhone').value.trim(),
-      date: new Date().toISOString(),
-      orderNo: 'ORD-' + Date.now().toString().slice(-6)
-    }));
-  });
-  renderGrid(ads, 'adsGrid');
-  renderGrid(stationery, 'stationeryGrid');
-  renderCart();
-</script>
+
+    // --- RENDER PRODUCTS ---
+    function renderProducts() {
+      const stGrid = document.getElementById('stationery-grid');
+      stGrid.innerHTML = stationeryData.map(p => `
+        <div class="card">
+          <div class="emoji-box">${p.emoji}</div>
+          <h3>${p.name}</h3>
+          <div class="price">${p.price} ETB</div>
+          <button class="btn" style="margin-top: auto;" onclick="addToCart('${p.id}', '${p.name}', ${p.price})">Add to Cart</button>
+        </div>
+      `).join('');
+
+      // Render 4 featured items on home
+      const homeGrid = document.getElementById('home-featured');
+      homeGrid.innerHTML = stationeryData.slice(0,4).map(p => `
+        <div class="card">
+          <div class="emoji-box">${p.emoji}</div>
+          <h3>${p.name}</h3>
+          <div class="price">${p.price} ETB</div>
+          <button class="btn" style="margin-top: auto;" onclick="addToCart('${p.id}', '${p.name}', ${p.price})">Add to Cart</button>
+        </div>
+      `).join('');
+
+      // Render Stickers
+      const stickerGrid = document.getElementById('sticker-grid');
+      stickerGrid.innerHTML = stickerData.map(p => `
+        <div class="card">
+          <div class="emoji-box">${p.emoji}</div>
+          <h3>${p.name}</h3>
+          <div class="price">${p.price} ETB</div>
+          <button class="btn" style="margin-top: auto;" onclick="addToCart('${p.id}', '${p.name}', ${p.price})">Add to Cart</button>
+        </div>
+      `).join('');
+    }
+
+    // --- CALCULATORS ---
+    function calcBanner() {
+      const w = parseFloat(document.getElementById('banner-width').value) || 0;
+      const h = parseFloat(document.getElementById('banner-height').value) || 0;
+      const q = parseInt(document.getElementById('banner-qty').value) || 1;
+      const total = (w * h * 200) * q;
+      document.getElementById('banner-total').innerText = `Total: ${total.toFixed(2)} ETB`;
+    }
+
+    function calcSticker() {
+      const q = parseInt(document.getElementById('sticker-qty').value) || 1;
+      const total = q * 17;
+      document.getElementById('sticker-total').innerText = `Total: ${total.toFixed(2)} ETB`;
+    }
+
+    // --- CART LOGIC ---
+    function addToCart(id, name, price) {
+      const existing = cart.find(item => item.id === id);
+      if (existing) {
+        existing.qty++;
+      } else {
+        cart.push({ id, name, price, qty: 1 });
+      }
+      updateCartUI();
+      alert(`${name} added to cart!`);
+    }
+
+    function addCustomToCart(name, totalText, type) {
+      // Extract number from "Total: 400 ETB"
+      const price = parseFloat(totalText.replace(/[^0-9.]/g, ''));
+      const id = 'custom_' + Date.now();
+      cart.push({ id, name, price, qty: 1 });
+      updateCartUI();
+      navTo('cart', document.querySelector('.nav-links li:nth-child(5) a'));
+    }
+
+    function removeFromCart(id) {
+      cart = cart.filter(item => item.id !== id);
+      updateCartUI();
+    }
+
+    function updateCartUI() {
+      const container = document.getElementById('cart-items-container');
+      const totalDisplay = document.getElementById('cart-total-display');
+      
+      if (cart.length === 0) {
+        container.innerHTML = '<p style="color: var(--text-muted);">Your cart is empty.</p>';
+        totalDisplay.innerText = 'Total: 0 ETB';
+        return;
+      }
+
+      let total = 0;
+      container.innerHTML = cart.map(item => {
+        total += (item.price * item.qty);
+        return `
+          <div class="cart-item">
+            <div>
+              <h4 style="margin-bottom: 5px;">${item.name}</h4>
+              <span style="color: var(--orange); font-weight: bold;">${item.price} ETB</span> × ${item.qty}
+            </div>
+            <button class="btn btn-outline" style="padding: 5px 10px; font-size: 0.8rem;" onclick="removeFromCart('${item.id}')">Remove</button>
+          </div>
+        `;
+      }).join('');
+
+      totalDisplay.innerText = `Total: ${total.toFixed(2)} ETB`;
+    }
+
+    // --- ORDER SUBMISSION (WEB3FORMS) ---
+    function prepareOrder(e) {
+      if (cart.length === 0) {
+        e.preventDefault();
+        alert("Your cart is empty. Please add items before ordering.");
+        return;
+      }
+
+      let orderText = "🛒 NEW ORDER (EMOJI ADVERTISING)\n\n";
+      let total = 0;
+      
+      cart.forEach(item => {
+        let lineTotal = item.price * item.qty;
+        total += lineTotal;
+        orderText += `▪️ ${item.name} x${item.qty} = ${lineTotal.toFixed(2)} ETB\n`;
+      });
+      
+      orderText += `\n💰 TOTAL: ${total.toFixed(2)} ETB\n`;
+      
+      document.getElementById('orderDetailsInput').value = orderText;
+
+      // Save for receipt page
+      localStorage.setItem('lastOrder', JSON.stringify({
+        items: cart,
+        total: total,
+        name: document.querySelector('input[name="name"]').value,
+        phone: document.querySelector('input[name="phone"]').value,
+        date: new Date().toISOString(),
+        orderNo: 'EMO-' + Date.now().toString().slice(-5)
+      }));
+    }
+
+    // --- INIT ---
+    window.onload = () => {
+      renderProducts();
+      calcBanner();
+      calcSticker();
+    };
+  </script>
 </body>
 </html>
