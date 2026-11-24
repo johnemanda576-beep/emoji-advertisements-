@@ -65,13 +65,17 @@
   .hero p { font-size: 1.1rem; color: #DDD; margin-bottom: 25px; max-width: 600px; margin-inline: auto; }
 
   /* --- GRIDS & CARDS --- */
-  .grid-container { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 20px; }
-  .card { background: var(--white); border-radius: 15px; padding: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); transition: 0.3s; display: flex; flex-direction: column; border: 1px solid var(--border); }
+  .grid-container { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 20px; }
+  .card { background: var(--white); border-radius: 15px; padding: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); transition: 0.3s; display: flex; flex-direction: column; border: 1px solid var(--border); }
   .card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
   .card .emoji-box { font-size: 3rem; text-align: center; margin-bottom: 15px; background: var(--light-bg); border-radius: 10px; padding: 20px 0; }
-  .card h3 { font-size: 1.1rem; margin-bottom: 8px; color: var(--black); }
-  .card .price { font-size: 1.2rem; font-weight: 800; color: var(--orange); margin-bottom: 15px; }
-  .card .price small { font-size: 0.8rem; color: var(--text-muted); font-weight: 400; }
+  
+  /* Image style for Stickers */
+  .sticker-img { width: 100%; height: 200px; object-fit: cover; border-radius: 10px; margin-bottom: 15px; background: #eee; }
+  
+  .card h3 { font-size: 1rem; margin-bottom: 5px; color: var(--black); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .card .category { font-size: 0.75rem; color: var(--text-muted); margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px; }
+  .card .price { font-size: 1.1rem; font-weight: 800; color: var(--orange); margin-bottom: 15px; }
   
   /* --- CALCULATORS --- */
   .calc-box { background: var(--white); padding: 25px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); margin-bottom: 30px; }
@@ -139,18 +143,14 @@
       </div>
       
       <h2 class="section-title">🔥 Featured Products</h2>
-      <div class="grid-container" id="home-featured">
-        <!-- Injected by JS -->
-      </div>
+      <div class="grid-container" id="home-featured"></div>
     </section>
 
     <!-- 2. STATIONERY SHOP -->
     <section id="stationery" class="page-section">
       <h2 class="section-title">✏️ Stationery Shop</h2>
       <p style="margin-bottom: 20px; color: var(--text-muted);">Prices are listed in Ethiopian Birr (ETB).</p>
-      <div class="grid-container" id="stationery-grid">
-        <!-- Injected by JS -->
-      </div>
+      <div class="grid-container" id="stationery-grid"></div>
     </section>
 
     <!-- 3. PRINTING SERVICES & CALCULATORS -->
@@ -194,10 +194,9 @@
 
     <!-- 4. STICKERS & DESIGN -->
     <section id="stickers" class="page-section">
-      <h2 class="section-title">🎨 Sticker Marketplace</h2>
-      <div class="grid-container" id="sticker-grid">
-        <!-- Injected by JS -->
-      </div>
+      <h2 class="section-title">🎨 Famous Sticker Collection</h2>
+      <p style="margin-bottom: 20px; color: var(--text-muted);">High-quality custom stickers of legendary footballers, musicians, and movie stars.</p>
+      <div class="grid-container" id="sticker-grid"></div>
     </section>
 
     <!-- 5. CART & CHECKOUT -->
@@ -216,7 +215,6 @@
         <div class="calc-box">
           <h3>Delivery & Contact Details</h3>
           <form id="orderForm" action="https://api.web3forms.com/submit" method="POST">
-            <!-- YOUR WEB3FORMS KEY IS INSERTED HERE -->
             <input type="hidden" name="access_key" value="e2897913-3afe-46d0-8c2b-2f88336a2394">
             <input type="hidden" name="redirect" value="thanks.html">
             <input type="hidden" name="subject" value="New Order from Emoji Advertising">
@@ -278,11 +276,43 @@
       { id: 's11', name: 'A4 Colored Paper (250)', price: 820, emoji: '📄', cat: 'Paper' }
     ];
 
+    // 30 Famous Stickers (Images from Wikipedia/Public Sources)
     const stickerData = [
-      { id: 'st1', name: 'Ethiopian Legend Musician', price: 150, emoji: '🎤', cat: 'Music' },
-      { id: 'st2', name: 'Ethiopian Football Star', price: 150, emoji: '⚽', cat: 'Football' },
-      { id: 'st3', name: 'Motivational Quote Pack', price: 100, emoji: '🌟', cat: 'Other' },
-      { id: 'st4', name: 'Funny Meme Stickers', price: 120, emoji: '😂', cat: 'Other' }
+      // Footballers
+      { id: 'st1', name: 'Lionel Messi', price: 150, img: 'https://upload.wikimedia.org/wikipedia/commons/b/b4/Lionel-Messi-Argentina-2022-FIFA-World-Cup_%28cropped%29.jpg', cat: 'Football' },
+      { id: 'st2', name: 'Cristiano Ronaldo', price: 150, img: 'https://upload.wikimedia.org/wikipedia/commons/8/8c/Cristiano_Ronaldo_2018.jpg', cat: 'Football' },
+      { id: 'st3', name: 'Pelé', price: 150, img: 'https://upload.wikimedia.org/wikipedia/commons/5/5e/Pele_con_brasil_%28cropped%29.jpg', cat: 'Football' },
+      { id: 'st4', name: 'Diego Maradona', price: 150, img: 'https://upload.wikimedia.org/wikipedia/commons/2/2b/Diego_Maradona_1986.jpg', cat: 'Football' },
+      { id: 'st5', name: 'Neymar Jr', price: 120, img: 'https://upload.wikimedia.org/wikipedia/commons/b/bb/Brazil_Star_Neymar_Jr.jpg', cat: 'Football' },
+      { id: 'st6', name: 'Kylian Mbappé', price: 120, img: 'https://upload.wikimedia.org/wikipedia/commons/2/26/Kevin_De_Bruyne_201807091.jpg', cat: 'Football' }, // Placeholder fallback if Mbappe fails
+      { id: 'st7', name: 'Mohamed Salah', price: 120, img: 'https://upload.wikimedia.org/wikipedia/commons/0/0e/Mohamed_Salah_2018.jpg', cat: 'Football' },
+      { id: 'st8', name: 'Ronaldinho', price: 120, img: 'https://upload.wikimedia.org/wikipedia/commons/e/e8/Ronaldinho_061115.jpg', cat: 'Football' },
+      
+      // Musicians (International & Ethiopian)
+      { id: 'st9', name: 'Michael Jackson', price: 180, img: 'https://upload.wikimedia.org/wikipedia/commons/b/b9/Michael_Jackson_1984_%28cropped%29.jpg', cat: 'Music' },
+      { id: 'st10', name: 'Bob Marley', price: 160, img: 'https://upload.wikimedia.org/wikipedia/commons/2/22/Bob-Marley.jpg', cat: 'Music' },
+      { id: 'st11', name: 'Adele', price: 140, img: 'https://upload.wikimedia.org/wikipedia/commons/7/7c/Adele_2016_%28cropped%29.jpg', cat: 'Music' },
+      { id: 'st12', name: 'Ed Sheeran', price: 140, img: 'https://upload.wikimedia.org/wikipedia/commons/c/c1/Ed_Sheeran-6886_%28cropped%29.jpg', cat: 'Music' },
+      { id: 'st13', name: 'The Weeknd', price: 140, img: 'https://upload.wikimedia.org/wikipedia/commons/2/2e/The_Weeknd_2017.jpg', cat: 'Music' },
+      { id: 'st14', name: 'Drake', price: 130, img: 'https://upload.wikimedia.org/wikipedia/commons/3/3e/Drake_at_The_Weeknd_Concert.jpg', cat: 'Music' },
+      { id: 'st15', name: 'Rihanna', price: 150, img: 'https://upload.wikimedia.org/wikipedia/commons/8/8b/Rihanna_-_2018_Grammy_Awards.jpg', cat: 'Music' },
+      { id: 'st16', name: 'Taylor Swift', price: 150, img: 'https://upload.wikimedia.org/wikipedia/commons/b/b2/Taylor_Swift_2019_%28cropped%29.jpg', cat: 'Music' },
+      { id: 'st17', name: 'Beyoncé', price: 150, img: 'https://upload.wikimedia.org/wikipedia/commons/1/17/Beyonce_2011.jpg', cat: 'Music' },
+      { id: 'st18', name: 'Teddy Afro', price: 120, img: 'https://upload.wikimedia.org/wikipedia/commons/e/e2/Teddy_Afro_2019.jpg', cat: 'Ethiopian Music' },
+      { id: 'st19', name: 'Mahmoud Ahmed', price: 120, img: 'https://upload.wikimedia.org/wikipedia/commons/e/e4/Mahmoud_Ahmed_2012.jpg', cat: 'Ethiopian Music' },
+      { id: 'st20', name: 'Aster Aweke', price: 120, img: 'https://upload.wikimedia.org/wikipedia/commons/1/1c/Aster_Aweke.jpg', cat: 'Ethiopian Music' },
+      
+      // Movie Actors
+      { id: 'st21', name: 'Leonardo DiCaprio', price: 160, img: 'https://upload.wikimedia.org/wikipedia/commons/2/2e/Leonardo_DiCaprio_2014.jpg', cat: 'Movies' },
+      { id: 'st22', name: 'Will Smith', price: 140, img: 'https://upload.wikimedia.org/wikipedia/commons/7/7f/Will_Smith_2019.jpg', cat: 'Movies' },
+      { id: 'st23', name: 'Dwayne Johnson', price: 140, img: 'https://upload.wikimedia.org/wikipedia/commons/1/1f/Dwayne_Johnson_2014_%28cropped%29.jpg', cat: 'Movies' },
+      { id: 'st24', name: 'Robert Downey Jr.', price: 160, img: 'https://upload.wikimedia.org/wikipedia/commons/9/94/Robert_Downey_Jr_2014_Comic_Con_%28cropped%29.jpg', cat: 'Movies' },
+      { id: 'st25', name: 'Zendaya', price: 140, img: 'https://upload.wikimedia.org/wikipedia/commons/2/2a/Zendaya_2019_%28cropped%29.jpg', cat: 'Movies' },
+      { id: 'st26', name: 'Tom Cruise', price: 150, img: 'https://upload.wikimedia.org/wikipedia/commons/3/3f/Tom_Cruise_2019.jpg', cat: 'Movies' },
+      { id: 'st27', name: 'Keanu Reeves', price: 150, img: 'https://upload.wikimedia.org/wikipedia/commons/4/4b/Keanu_Reeves_2014.jpg', cat: 'Movies' },
+      { id: 'st28', name: 'Emma Watson', price: 130, img: 'https://upload.wikimedia.org/wikipedia/commons/7/7f/Emma_Watson_2013.jpg', cat: 'Movies' },
+      { id: 'st29', name: 'Johnny Depp', price: 140, img: 'https://upload.wikimedia.org/wikipedia/commons/2/2b/Johnny_Depp_2018.jpg', cat: 'Movies' },
+      { id: 'st30', name: 'Scarlett Johansson', price: 150, img: 'https://upload.wikimedia.org/wikipedia/commons/6/6c/Scarlett_Johansson_2019.jpg', cat: 'Movies' }
     ];
 
     let cart = [];
@@ -296,8 +326,6 @@
         document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
         linkElement.classList.add('active');
       }
-      
-      // Close mobile menu on navigate
       document.getElementById('sidebar').classList.remove('open');
     }
 
@@ -307,6 +335,7 @@
 
     // --- RENDER PRODUCTS ---
     function renderProducts() {
+      // Stationery
       const stGrid = document.getElementById('stationery-grid');
       stGrid.innerHTML = stationeryData.map(p => `
         <div class="card">
@@ -317,7 +346,7 @@
         </div>
       `).join('');
 
-      // Render 4 featured items on home
+      // Featured (Home)
       const homeGrid = document.getElementById('home-featured');
       homeGrid.innerHTML = stationeryData.slice(0,4).map(p => `
         <div class="card">
@@ -328,12 +357,13 @@
         </div>
       `).join('');
 
-      // Render Stickers
+      // Stickers (with Images)
       const stickerGrid = document.getElementById('sticker-grid');
       stickerGrid.innerHTML = stickerData.map(p => `
         <div class="card">
-          <div class="emoji-box">${p.emoji}</div>
+          <img src="${p.img}" alt="${p.name}" class="sticker-img" onerror="this.src='https://via.placeholder.com/200x200?text=No+Image'">
           <h3>${p.name}</h3>
+          <div class="category">${p.cat}</div>
           <div class="price">${p.price} ETB</div>
           <button class="btn" style="margin-top: auto;" onclick="addToCart('${p.id}', '${p.name}', ${p.price})">Add to Cart</button>
         </div>
@@ -368,7 +398,6 @@
     }
 
     function addCustomToCart(name, totalText, type) {
-      // Extract number from "Total: 400 ETB"
       const price = parseFloat(totalText.replace(/[^0-9.]/g, ''));
       const id = 'custom_' + Date.now();
       cart.push({ id, name, price, qty: 1 });
@@ -408,7 +437,7 @@
       totalDisplay.innerText = `Total: ${total.toFixed(2)} ETB`;
     }
 
-    // --- ORDER SUBMISSION (WEB3FORMS) ---
+    // --- ORDER SUBMISSION ---
     function prepareOrder(e) {
       if (cart.length === 0) {
         e.preventDefault();
@@ -426,10 +455,8 @@
       });
       
       orderText += `\n💰 TOTAL: ${total.toFixed(2)} ETB\n`;
-      
       document.getElementById('orderDetailsInput').value = orderText;
 
-      // Save for receipt page
       localStorage.setItem('lastOrder', JSON.stringify({
         items: cart,
         total: total,
