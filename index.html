@@ -1,516 +1,291 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="am">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>EMOJI ADVERTISING | Premium Printing & Stationery</title>
-  
-  <!-- Tailwind CSS -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  
-  <!-- Lucide Icons -->
-  <script src="https://unpkg.com/lucide@latest"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EMOJI ADVERTISING</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Ethiopic:wght@400;600;800&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<script>
+tailwind.config={darkMode:'class',theme:{extend:{fontFamily:{sans:['Inter','Noto Sans Ethiopic','sans-serif']}}}}
+</script>
+<style>
+.fade{animation:f .4s ease-out}@keyframes f{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.card{transition:.25s}.card:hover{transform:translateY(-4px);box-shadow:0 12px 28px rgba(0,0,0,.22)}
+.box{background:rgba(255,255,255,.95);backdrop-filter:blur(6px);border:1px solid #e2e8f0;border-radius:1rem}.dark .box{background:rgba(15,23,42,.92);border-color:#1e293b}
+.inp{width:100%;padding:.75rem;border-radius:.75rem;border:1px solid #cbd5e1;background:transparent}.dark .inp{border-color:#334155}
+.tab.on{background:#f97316;color:#fff}
 
-  <!-- Custom Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+/* Category & Sticker Card Backgrounds */
+.bg-fb{background:url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20width%3D%2760%27%20height%3D%2760%27%3E%3Ccircle%20cx%3D%2730%27%20cy%3D%2730%27%20r%3D%2718%27%20fill%3D%27none%27%20stroke%3D%27white%27%20stroke-width%3D%273%27%20opacity%3D%27.22%27/%3E%3C/svg%3E"),linear-gradient(135deg,#16a34a,#065f46)}
+.bg-mu{background:url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20width%3D%2760%27%20height%3D%2760%27%3E%3Ccircle%20cx%3D%2710%27%20cy%3D%2710%27%20r%3D%275%27%20fill%3D%27white%27%20opacity%3D%27.25%27/%3E%3Cpath%20d%3D%27M40%2032l3%208%208%203-8%203-3%208-3-8-8-3%208-3z%27%20fill%3D%27white%27%20opacity%3D%27.3%27/%3E%3C/svg%3E"),linear-gradient(135deg,#a855f7,#db2777)}
+.bg-at{background:url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20width%3D%2760%27%20height%3D%2760%27%3E%3Cpath%20d%3D%27M0%2060L60%200M-15%2015L15-15M45%2075L75%2045%27%20stroke%3D%27white%27%20stroke-width%3D%278%27%20opacity%3D%27.16%27/%3E%3C/svg%3E"),linear-gradient(135deg,#0ea5e9,#1d4ed8)}
 
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          fontFamily: { sans: ['Inter', 'sans-serif'] },
-          colors: {
-            brand: {
-              yellow: '#FBBF24',
-              orange: '#F97316',
-              dark: '#0F172A',
-            }
-          }
-        }
-      }
-    }
-  </script>
-  <style>
-    /* Smooth transitions */
-    * { transition: background-color 0.3s, border-color 0.3s; }
-    .fade-in { animation: fadeIn 0.4s ease-out; }
-    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-    ::-webkit-scrollbar { width: 6px; }
-    ::-webkit-scrollbar-track { background: transparent; }
-    ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
-    .dark ::-webkit-scrollbar-thumb { background: #334155; }
-  </style>
+/* Black Panther Inspired Obsidian, Royal Purple & Gold Claw Theme */
+.bg-mv{background:url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20width%3D%2780%27%20height%3D%2780%27%3E%3Cpath%20d%3D%27M12%2068L52%2012M24%2072L64%2016M36%2076L76%2020%27%20stroke%3D%27%23a855f7%27%20stroke-width%3D%273.5%27%20stroke-linecap%3D%27round%27%20opacity%3D%27.35%27/%3E%3Cpolygon%20points%3D%2715,15%2022,28%208,28%27%20fill%3D%27%23fbbf24%27%20opacity%3D%27.2%27/%3E%3C/svg%3E"),linear-gradient(135deg,#09090b,#3b0764,#1e1b4b)}
+.bg-goods{background:url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20width%3D%2760%27%20height%3D%2760%27%3E%3Cpath%20d%3D%27M0%2060L60%200M-15%2015L15-15M45%2075L75%2045%27%20stroke%3D%27white%27%20stroke-width%3D%278%27%20opacity%3D%27.16%27/%3E%3C/svg%3E"),linear-gradient(135deg,#fbbf24,#f97316)}
+
+/* Black Panther & Sticker Collage Hero Banner */
+.bg-hero{background:url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20width%3D%27120%27%20height%3D%27120%27%3E%3Cpath%20d%3D%27M15%2095L65%2020M30%20102L80%2027M45%20109L95%2034%27%20stroke%3D%27%23c084fc%27%20stroke-width%3D%274%27%20stroke-linecap%3D%27round%27%20opacity%3D%27.25%27/%3E%3Ccircle%20cx%3D%2795%27%20cy%3D%2790%27%20r%3D%2714%27%20fill%3D%27none%27%20stroke%3D%27%23fbbf24%27%20stroke-width%3D%272.5%27%20stroke-dasharray%3D%274%204%27%20opacity%3D%27.3%27/%3E%3Ctext%20x%3D%2782%27%20y%3D%2732%27%20font-size%3D%2718%27%20opacity%3D%27.25%27%3E%E2%AD%90%3C/text%3E%3Ctext%20x%3D%2714%27%20y%3D%2735%27%20font-size%3D%2718%27%20opacity%3D%27.25%27%3E%F0%9F%90%86%3C/text%3E%3C/svg%3E"),linear-gradient(135deg,#09090b 0%,#2e1065 55%,#701a75 100%)}
+
+/* Repeating Emoji Advertising Page Background */
+body{
+  background-image:
+    url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20width%3D%27220%27%20height%3D%
+    27220%27%3E%3Cg%20font-size%3D%2722%27%20opacity%3D%270.14%27%3E%3Ctext%20x%3D%2718%27%20y%3D%2736%27%20transform%3D%27rotate(-15%2018%2036)%27%3E%F0%9F%8E%A8%3C/text%3E%3Ctext%20x%3D%27115%27%20y%3D%2742%27%20transform%3D%27rotate(12%20115%2042)%27%3E%E2%AD%90%3C/text%3E%3Ctext%20x%3D%27180%27%20y%3D%2728%27%20transform%3D%27rotate(-10%20180%2028)%27%3E%F0%9F%98%8E%3C/text%3E%3Ctext%20x%3D%2758%27%20y%3D%2798%27%20transform%3D%27rotate(18%2058%2098)%27%3E%F0%9F%96%A8%EF%B8%8F%3C/text%3E%3Ctext%20x%3D%27150%27%20y%3D%27108%27%20transform%3D%27rotate(-18%20150%20108)%27%3E%F0%9F%94%A5%3C/text%3E%3Ctext%20x%3D%2720%27%20y%3D%27165%27%20transform%3D%27rotate(14%2020%20165)%27%3E%E2%9C%8F%EF%B8%8F%3C/text%3E%3Ctext%20x%3D%27105%27%20y%3D%27178%27%20transform%3D%27rotate(-12%20105%20178)%27%3E%F0%9F%9A%80%3C/text%3E%3Ctext%20x%3D%27182%27%20y%3D%27192%27%20transform%3D%27rotate(15%20182%20192)%27%3E%F0%9F%8E%AC%3C/text%3E%3C/g%3E%3C/svg%3E"),
+    radial-gradient(circle at 10% 10%,rgba(251,146,60,.18),transparent 40%),
+    radial-gradient(circle at 90% 60%,rgba(168,85,247,.16),transparent 40%);
+  background-attachment:fixed;
+}
+</style>
 </head>
-<body class="bg-slate-50 text-slate-800 dark:bg-brand-dark dark:text-slate-200 font-sans min-h-screen flex flex-col md:flex-row">
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-200 font-sans">
 
-  <!-- SIDEBAR (DESKTOP) -->
-  <aside class="hidden md:flex flex-col w-72 bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 h-screen sticky top-0">
-    <div class="p-6 border-b border-slate-200 dark:border-slate-800 flex items-center gap-3">
-      <div class="bg-brand-yellow text-brand-dark p-2 rounded-xl">
-        <i data-lucide="smile" class="w-6 h-6"></i>
-      </div>
-      <div>
-        <h1 class="text-xl font-extrabold tracking-tight">EMOJI</h1>
-        <p class="text-xs text-slate-500 font-semibold tracking-widest">ADVERTISING</p>
-      </div>
-    </div>
-    <nav class="flex-1 p-4 space-y-2 overflow-y-auto">
-      <button onclick="navTo('home', this)" class="nav-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl bg-brand-orange text-white font-medium">
-        <i data-lucide="home" class="w-5 h-5"></i> Home
-      </button>
-      <button onclick="navTo('stationery', this)" class="nav-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-400 font-medium">
-        <i data-lucide="pen-tool" class="w-5 h-5"></i> Stationery
-      </button>
-      <button onclick="navTo('printing', this)" class="nav-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-400 font-medium">
-        <i data-lucide="printer" class="w-5 h-5"></i> Printing
-      </button>
-      <button onclick="navTo('stickers', this)" class="nav-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-400 font-medium">
-        <i data-lucide="sparkles" class="w-5 h-5"></i> Famous Stickers
-      </button>
-      <button onclick="navTo('cart', this)" class="nav-btn w-full flex items-center justify-between px-4 py-3 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-400 font-medium">
-        <span class="flex items-center gap-3"><i data-lucide="shopping-cart" class="w-5 h-5"></i> Cart</span>
-        <span id="cart-badge" class="bg-brand-yellow text-brand-dark text-xs font-bold px-2 py-1 rounded-full hidden">0</span>
-      </button>
-    </nav>
-    <div class="p-4 border-t border-slate-200 dark:border-slate-800">
-      <button onclick="toggleDarkMode()" class="w-full flex items-center justify-center gap-2 px-4 py-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-sm font-medium">
-        <i data-lucide="moon" class="w-4 h-4 dark:hidden"></i>
-        <i data-lucide="sun" class="w-4 h-4 hidden dark:block"></i>
-        Toggle Dark Mode
-      </button>
-    </div>
-  </aside>
+<header class="sticky top-0 z-40 bg-white/90 dark:bg-slate-900/90 backdrop-blur border-b border-slate-200 dark:border-slate-800">
+  <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+    <button onclick="go('home')" class="flex items-center gap-2 font-extrabold text-lg tracking-tight"><svg viewBox="0 0 64 64" class="w-11 h-11 drop-shadow" aria-hidden="true"><defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fde047"/><stop offset=".5" stop-color="#fb923c"/><stop offset="1" stop-color="#ec4899"/></linearGradient></defs><path d="M20 3h24a17 17 0 0 1 17 17v21L41 61H20A17 17 0 0 1 3 44V20A17 17 0 0 1 20 3Z" fill="url(#lg)" stroke="#fff" stroke-width="4"/><path d="M61 41H50a9 9 0 0 0-9 9v11Z" fill="#fff"/><path d="M19 20l2.5 5 5.500.8-4 3.900 1 5.500-5-2.600-5 2.600 1-5.500-4-3.900 5.500-.8Z" fill="#fff"/><path d="M36 26q5-6 10 0" fill="none" stroke="#1e1b4b" stroke-width="4" stroke-linecap="round"/><path d="M17 40q14 16 28 0Z" fill="#1e1b4b"/></svg><span class="bg-gradient-to-r from-orange-500 to-pink-500 bg-clip-text text-transparent">EMOJI ADVERTISING</span></button>
+    <button onclick="dark()" aria-label="Dark theme" class="shrink-0 w-16 h-8 p-1 rounded-full bg-sky-300 dark:bg-indigo-900 flex"><span class="w-6 h-6 rounded-full flex items-center justify-center bg-white dark:bg-slate-800 shadow transition-transform dark:translate-x-8"><svg viewBox="0 0 24 24" class="w-4 h-4 dark:hidden" fill="#f59e0b" stroke="#f59e0b" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M1 12h2M21 12h2M4 4l2 2M18 18l2 2M4 20l2-2M18 6l2-2"/></svg><svg viewBox="0 0 24 24" class="w-4 h-4 hidden dark:block" fill="#fde68a"><path d="M21 13A9 9 0 1 1 11 3a7 7 0 0 0 10 10Z"/></svg></span></button>
+  </div>
+  <nav class="max-w-6xl mx-auto px-2 pb-2 flex gap-2 overflow-x-auto whitespace-nowrap text-sm font-semibold">
+    <button data-p="home" onclick="go('home')" class="tab on px-4 py-2 rounded-full">🏠 መነሻ</button>
+    <button data-p="stationery" onclick="go('stationery')" class="tab px-4 py-2 rounded-full">✏️ የጽሕፈት መሣሪያ</button>
+    <button data-p="printing" onclick="go('printing')" class="tab px-4 py-2 rounded-full">🖨️ ኅትመት</button>
+    <button data-p="stickers" onclick="go('stickers')" class="tab px-4 py-2 rounded-full">⭐ Stickers</button>
+    <button data-p="cart" onclick="go('cart')" class="tab px-4 py-2 rounded-full">🛒 Order <span id="badge" class="bg-amber-400 text-slate-900 rounded-full px-2">0</span></button>
+  </nav>
+</header>
 
-  <!-- MOBILE HEADER -->
-  <header class="md:hidden flex items-center justify-between p-4 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 sticky top-0 z-50">
-    <div class="flex items-center gap-2">
-      <div class="bg-brand-yellow text-brand-dark p-1.5 rounded-lg"><i data-lucide="smile" class="w-5 h-5"></i></div>
-      <h1 class="font-extrabold text-lg">EMOJI</h1>
+<main class="max-w-6xl mx-auto p-4">
+<section id="home" class="page fade">
+  <div class="rounded-3xl p-8 md:p-16 text-center text-white bg-hero shadow-2xl mb-8 border border-purple-500/30">
+    <div class="inline-flex items-center gap-2 bg-white/10 border border-amber-400/40 text-amber-300 text-xs fo
+      nt-bold px-3 py-1 rounded-full mb-4">
+      <span>🐆 PREMIUM STICKERS &amp; PRINTING</span>
     </div>
-    <div class="flex items-center gap-4">
-      <button onclick="toggleDarkMode()"><i data-lucide="moon" class="w-6 h-6 dark:hidden"></i><i data-lucide="sun" class="w-6 h-6 hidden dark:block"></i></button>
-      <button onclick="toggleMobileMenu()"><i data-lucide="menu" class="w-7 h-7"></i></button>
-    </div>
-  </header>
-
-  <!-- MOBILE MENU OVERLAY -->
-  <div id="mobile-menu" class="hidden fixed inset-0 bg-black/50 z-50 md:hidden" onclick="toggleMobileMenu()">
-    <div class="absolute right-0 top-0 h-full w-64 bg-white dark:bg-slate-900 p-6 flex flex-col gap-4 shadow-2xl" onclick="event.stopPropagation()">
-      <div class="flex justify-between items-center mb-4">
-        <span class="font-bold text-lg">Menu</span>
-        <button onclick="toggleMobileMenu()"><i data-lucide="x" class="w-6 h-6"></i></button>
-      </div>
-      <button onclick="navTo('home', this); toggleMobileMenu()" class="text-left font-medium p-2 rounded hover:bg-slate-100 dark:hover:bg-slate-800">Home</button>
-      <button onclick="navTo('stationery', this); toggleMobileMenu()" class="text-left font-medium p-2 rounded hover:bg-slate-100 dark:hover:bg-slate-800">Stationery</button>
-      <button onclick="navTo('printing', this); toggleMobileMenu()" class="text-left font-medium p-2 rounded hover:bg-slate-100 dark:hover:bg-slate-800">Printing</button>
-      <button onclick="navTo('stickers', this); toggleMobileMenu()" class="text-left font-medium p-2 rounded hover:bg-slate-100 dark:hover:bg-slate-800">Famous Stickers</button>
-      <button onclick="navTo('cart', this); toggleMobileMenu()" class="text-left font-medium p-2 rounded hover:bg-slate-100 dark:hover:bg-slate-800">Cart</button>
+    <h1 class="text-3xl md:text-5xl font-extrabold leading-snug mb-4 text-amber-400">ሐሳብዎን ወደ ውብ ሥራ እንቀይራለን</h1>
+    <p class="text-slate-200 mb-8">ጥራት ያለው ኅትመት፣ ማስታወቂያ እና የጽሕፈት መሣሪያዎች በአንድ ቦታ</p>
+    <div class="flex flex-wrap justify-center gap-3">
+      <button onclick="go('stationery')" class="bg-amber-400 text-slate-900 font-bold px-6 py-3 rounded-xl shadow-lg hover:bg-amber-300 transition">ዕቃዎችን ይግዙ</button>
+      <button onclick="go('stickers')" class="bg-purple-600 border border-purple-400/40 font-bold px-6 py-3 rounded-xl shadow-lg hover:bg-purple-500 transition">⭐ Stickers ይመልከቱ</button>
+      <button onclick="go('printing')" class="bg-orange-500 font-bold px-6 py-3 rounded-xl shadow-lg hover:bg-orange-400 transition">የኅትመት አገልግሎት</button>
     </div>
   </div>
+  <h2 class="text-2xl font-extrabold mb-4">🔥 Featured Stickers &amp; Products</h2>
+  <div id="home-grid" class="grid grid-cols-2 lg:grid-cols-4 gap-4"></div>
+</section>
 
-  <!-- MAIN CONTENT -->
-  <main class="flex-1 p-4 md:p-10 max-w-7xl mx-auto w-full">
+<section id="stationery" class="page hidden fade">
+  <h2 class="text-3xl font-extrabold mb-3">የጽሕፈት መሣሪያዎች</h2>
+  <input id="q1" oninput="renderGoods()" class="inp mb-4" placeholder="🔍 Search products...">
+  <div id="goods-grid" class="grid grid-cols-2 lg:grid-cols-4 gap-4"></div>
+</section>
 
-    <!-- HOME -->
-    <section id="home" class="page-section fade-in block">
-      <div class="relative bg-gradient-to-br from-slate-900 to-slate-800 rounded-3xl p-8 md:p-16 text-center text-white overflow-hidden shadow-2xl mb-10">
-        <div class="absolute top-0 left-0 w-full h-full opacity-10 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
-        <div class="relative z-10">
-          <h1 class="text-4xl md:text-6xl font-extrabold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-brand-yellow to-brand-orange">Your Ideas. Our Creativity.</h1>
-          <p class="text-lg md:text-xl text-slate-300 mb-8 max-w-2xl mx-auto">Ethiopia's premium destination for custom advertising, high-quality printing, and complete stationery supplies.</p>
-          <div class="flex flex-col sm:flex-row justify-center gap-4">
-            <button onclick="navTo('stationery', document.querySelector('.nav-btn:nth-child(2)'))" class="bg-brand-yellow text-brand-dark px-8 py-3 rounded-xl font-bold hover:bg-yellow-500 transition shadow-lg">Shop Stationery</button>
-            <button onclick="navTo('printing', document.querySelector('.nav-btn:nth-child(3)'))" class="bg-brand-orange text-white px-8 py-3 rounded-xl font-bold hover:bg-orange-600 transition shadow-lg">Printing Services</button>
-          </div>
-        </div>
-      </div>
-      
-      <div class="flex items-center justify-between mb-6">
-        <h2 class="text-2xl font-bold">🔥 Featured Products</h2>
-      </div>
-      <div id="home-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"></div>
-    </section>
+<section id="printing" class="page hidden fade">
+  <h2 class="text-3xl font-extrabold mb-4">የኅትመት አገልግሎት</h2>
+  <div class="grid md:grid-cols-2 gap-4">
+    <div class="box p-5 space-y-3">
+      <h3 class="text-xl font-bold">🚩 ባነር (200 ETB በካሬ ሜትር)</h3>
+      <label class="block">ወርድ (ሜ)<input id="bw" type="number" value="1" min="0.1" step="0.1" oninput="calc()" class="inp"></label>
+      <label class="block">ቁመት (ሜ)<input id="bh" type="number" value="1" min="0.1" step="0.1" oninput="calc()" class="inp"></label>
+      <label class="block">ብዛት<input id="bq" type="number" value="1" min="1" oninput="calc()" class="inp"></label>
+      <p id="bt" class="text-center text-2xl font-extrabold text-orange-500"></p>
+      <button onclick="addBanner()" class="w-full bg-orange-500 text-white font-bold py-3 rounded-xl">Add to Order</button>
+    </div>
+    <div class="box p-5 space-y-3">
+      <h3 class="text-xl font-bold">⭐ ስቲከር ኅትመት (70 ETB በ A4 መጠን)</h3>
+      <p class="text-xs text-slate-500">መደበኛ A4 (21 ሴ.ሜ × 29.7 ሴ.ሜ) = 70 ETB</p>
+      <label class="block">ወርድ (ሴ.ሜ / cm)<input id="sw" type="number" value="21" min="1" step="0.5" oninput="calc()" class="inp"></label>
+      <label class="block">ቁመት (ሴ.ሜ / cm)<input id="sh" type="number" value="29.7" min="1" step="0.5" oninput="calc()" class="inp"></label>
+      <label class="block">ብዛት<input id="sq" type="number" value="1" min="1" oninput="calc()" class="inp"></label>
+      <p id="st" class="text-center text-2xl font-extrabold text-orange-500"></p>
+      <button onclick="addSheets()" class="w-full bg-orange-500 text-white font-bold py-3 rounded-xl">Add to Order</button>
+    </div>
+  </div>
+</section>
 
-    <!-- STATIONERY -->
-    <section id="stationery" class="page-section hidden fade-in">
-      <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
-        <div>
-          <h2 class="text-3xl font-extrabold">Stationery Shop</h2>
-          <p class="text-slate-500">Prices in Ethiopian Birr (ETB)</p>
-        </div>
-        <div class="relative w-full md:w-72">
-          <i data-lucide="search" class="absolute left-3 top-3 w-5 h-5 text-slate-400"></i>
-          <input type="text" id="search-stationery" oninput="renderStationery()" placeholder="Search products..." class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-brand-orange">
-        </div>
-      </div>
-      <div id="stationery-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"></div>
-    </section>
+<section id="stickers" class="page hidden fade">
+  <h2 class="text-3xl font-extrabold">Famous Stickers</h2>
+  <p class="text-slate-500 mb-3">All stickers 70 ETB</p>
+  <input id="q2" oninput="renderStickers()" class="inp mb-3" placeholder="🔍 Search names (Black Panther, Benzema, Messi...)">
+  <div id="chips" class="flex gap-2 overflow-x-auto whitespace-nowrap mb-4"></div>
+  <div id="sticker-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"></div>
+</section>
 
-    <!-- PRINTING -->
-    <section id="printing" class="page-section hidden fade-in">
-      <h2 class="text-3xl font-extrabold mb-6">Printing Services</h2>
-      <div class="grid md:grid-cols-2 gap-8">
-        
-        <!-- Banner Calc -->
-        <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800">
-          <h3 class="text-xl font-bold mb-4 flex items-center gap-2"><i data-lucide="flag" class="text-brand-orange"></i> Banner Printing</h3>
-          <p class="text-sm text-slate-500 mb-4">200 ETB per square meter</p>
-          <div class="grid grid-cols-2 gap-4 mb-4">
-            <div>
-              <label class="text-sm font-medium mb-1 block">Width (m)</label>
-              <input type="number" id="banner-w" value="1" step="0.1" oninput="calcBanner()" class="w-full p-2 border border-slate-200 dark:border-slate-700 rounded-lg dark:bg-slate-800">
-            </div>
-            <div>
-              <label class="text-sm font-medium mb-1 block">Height (m)</label>
-              <input type="number" id="banner-h" value="1" step="0.1" oninput="calcBanner()" class="w-full p-2 border border-slate-200 dark:border-slate-700 rounded-lg dark:bg-slate-800">
-            </div>
-            <div class="col-span-2">
-              <label class="text-sm font-medium mb-1 block">Quantity</label>
-              <input type="number" id="banner-qty" value="1" min="1" oninput="calcBanner()" class="w-full p-2 border border-slate-200 dark:border-slate-700 rounded-lg dark:bg-slate-800">
-            </div>
-          </div>
-          <div class="bg-slate-100 dark:bg-slate-800 p-4 rounded-xl text-center font-bold text-xl text-brand-orange mb-4" id="banner-total">0 ETB</div>
-          <button onclick="addCustom('Custom Banner', document.getElementById('banner-total').innerText)" class="w-full bg-brand-orange text-white py-3 rounded-xl font-bold hover:bg-orange-600">Add Banner to Cart</button>
-        </div>
+<section id="cart" class="page hidden fade">
+  <h2 class="text-3xl font-extrabold mb-4">Your Order</h2>
+  <div class="grid md:grid-cols-2 gap-4">
+    <div><div id="items" class="space-y-3"></div>
+      <div class="box p-4 mt-3 flex justify-between text-xl font-extrabold"><span>ጠቅላላ፦</span><span id="total" class="text-orange-500"></span></div></div>
+    <form id="form" onsubmit="order(event)" class="box p-5 space-y-3 h-fit">
+      <h3 class="font-bold text-lg">የትዕዛዝ መረጃ</h3>
+      <input type="hidden" name="access_key" value="e2897913-3afe-46d0-8c2b-2f88336a2394">
+      <input type="hidden" n
+        ame="subject" value="New Order from Emoji Advertising">
+      <input type="hidden" name="order_details" id="details">
+      <input name="name" required class="inp" placeholder="ሙሉ ስም">
+      <input name="phone" type="tel" required pattern="(\+251|0)[79][0-9]{8}" class="inp" placeholder="ስልክ ቁጥር 09XXXXXXXX">
+      <input name="location" required class="inp" placeholder="የማድረሻ ቦታ">
+      <button id="send" class="w-full bg-amber-400 text-slate-900 font-bold py-3 rounded-xl">ትዕዛዝ ላክ</button>
+    </form>
+  </div>
+</section>
+</main>
 
-        <!-- Sticker Calc -->
-        <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800">
-          <h3 class="text-xl font-bold mb-4 flex items-center gap-2"><i data-lucide="layers" class="text-brand-orange"></i> A4 Sticker Printing</h3>
-          <p class="text-sm text-slate-500 mb-4">17 ETB per A4 sheet</p>
-          <div class="mb-4">
-            <label class="text-sm font-medium mb-1 block">Number of Sheets</label>
-            <input type="number" id="sticker-qty" value="1" min="1" oninput="calcSticker()" class="w-full p-2 border border-slate-200 dark:border-slate-700 rounded-lg dark:bg-slate-800">
-          </div>
-          <div class="bg-slate-100 dark:bg-slate-800 p-4 rounded-xl text-center font-bold text-xl text-brand-orange mb-4" id="sticker-total">0 ETB</div>
-          <button onclick="addCustom('A4 Stickers', document.getElementById('sticker-total').innerText)" class="w-full bg-brand-orange text-white py-3 rounded-xl font-bold hover:bg-orange-600">Add Stickers to Cart</button>
-        </div>
+<footer class="text-center text-sm text-slate-500 py-8">© EMOJI ADVERTISING</footer>
+<div id="toast" class="fixed bottom-5 left-1/2 -translate-x-1/2 bg-green-600 text-white px-5 py-3 rounded-xl shadow-lg hidden z-50 text-center"></div>
 
-      </div>
-    </section>
+<script>
+// ምርቶች: [id, ስም, ዋጋ, ፎቶ ፋይል, ኢሞጂ, የዊኪፔዲያ ገጽ]
+const goods=[
+['s1','BIC Ballpoint Pen',45,'bic-pen','🖊️','Ballpoint_pen'],
+['s2','Buna Blue Pen',18,'buna-pen','🖊️','Ballpoint_pen'],
+['s3','Drawing Pencil',15,'drawing-pencil','✏️','Pencil'],
+['s4','Eraser',18,'eraser','🧽','Eraser'],
+['s5','Pencil Sharpener',21,'sharpener','🔪','Pencil_sharpener'],
+['s6','Ruler (30cm)',45,'ruler','📏','Ruler'],
+['s7','Scissors',180,'scissors','✂️','Scissors'],
+['s8','Glue Stick',68,'glue-stick','🧴','Glue_stick'],
+['s9','Exercise Book',100,'exercise-book','📒','Exercise_book'],
+['s10','Colored Pencils (12pcs)',85,'colored-pencils','🖍️','Colored_pencil'],
+['s11','A4 Colored Paper (250)',820,'colored-paper','📄','Construction_paper']
+].map(([id,name,price,file,emoji,wiki])=>({id,name,price,emoji,wiki,srcs:[images/products/${file}.jpg]}));
 
-    <!-- STICKERS -->
-    <section id="stickers" class="page-section hidden fade-in">
-      <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
-        <div>
-          <h2 class="text-3xl font-extrabold">Famous Stickers</h2>
-          <p class="text-slate-500">High-quality custom stickers of legends</p>
-        </div>
-        <div class="relative w-full md:w-72">
-          <i data-lucide="search" class="absolute left-3 top-3 w-5 h-5 text-slate-400"></i>
-          <input type="text" id="search-stickers" oninput="renderStickers()" placeholder="Search stars..." class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-brand-orange">
-        </div>
-      </div>
-      <div id="stickers-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"></div>
-    </section>
+const W='https://upload.wikimedia.org/wikipedia/commons/';
+// [id, ስም, ምድብ, የመጀመሪያ ሊንክ]
+const stickers=[
+['st37','Black Panther','Movies'],
+['st1','Lionel Messi','Football','b/b4/Lionel-Messi-Argentina-2022-FIFA-World-Cup_%28cropped%29.jpg'],
+['st2','Cristiano Ronaldo','Football','8/8c/Cristiano_Ronaldo_2018.jpg'],
+['st31','Karim Benzema','Football'],
+['st32','Erling Haaland','Football'],
+['st33','Luka Modrić','Football'],
+['st3','Pelé','Football','5/5e/Pele_con_brasil_%28cropped%29.jpg'],
+['st4','Diego Maradona','Football','2/2b/Diego_Maradona_1986.jpg'],
+['st5','Neymar Jr','Football','b/bb/Brazil_Star_Neymar_Jr.jpg'],
+['st6','Kylian Mbappé','Football'],
+['st7','Mohamed Salah','Football','0/0e/Mohamed_Salah_2018.jpg'],
+['st8','Ronaldinho','Football','e/e8/Ronaldinho_061115.jpg'],
+['st9','Michael Jackson','Music','b/b9/Michael_Jackson_1984_%28cropped%29.jpg'],
+['st10','Bob Marley','Music','2/22/Bob-Marley.jpg'],
+['st11','Adele','Music','7/7c/Adele_2016_%28cropped%29.jpg'],
+['st12','Ed Sheeran','Music','c/c1/Ed_Sheeran-6886_%28cropped%29.jpg'],
+['st13','The Weeknd','Music','2/2e/The_Weeknd_2017.jpg'],
+['st14','Drake','Music','3/3e/Drake_at_The_Weeknd_Concert.jpg'],
+['st15','Rihanna','Music','8/8b/Rihanna_-_2018_Grammy_Awards.jpg'],
+['st16','Taylor Swift','Music','b/b2/Taylor_Swift_2019_%28cropped%29.jpg'],
+['st17','Beyoncé','Music','1/17/Beyonce_2011.jpg'],
+['st18','Teddy Afro','Music','e/e2/Teddy_Afro_2019.jpg'],
+['st19','Mahmoud Ahmed','Music','e/e4/Mahmoud_Ahmed_2012.jpg'],
+['st20','Aster Aweke','Music','1/1c/Aster_Aweke.jpg'],
+['st34','Haile Gebrselassie','Athletics'],
+['st35','Tirunesh Dibaba','Athletics'],
+['st36','Abebe Bikila','Athletics'],
+['st21','Leonardo DiCaprio','Movies','2/2e/Leonardo_DiCaprio_2014.jpg'],
+['st22','Will Smith','Movies','7/7f/Will_Smith_2019.jpg'],
+['st23','Dwayne Johnson','Movies','1/1f/Dwayne_Johnson_2014_%28cropped%29.jpg'],
+['st24','Robert Downey Jr.','Movies','9/94/Robert_Downey_Jr_2014_Comic_Con_%28cropped%29.jpg'],
+['st25','Zendaya','Movies','2/2a/Zendaya_2019_%28cropped%29.jpg'],
+['st26','Tom Cruise','Movies','3/3f/Tom_Cruise_2019.jpg'],
+['st27','Keanu Reeves','Movies','4/4b/Keanu_Reeves_2014.jpg'],
+['st28','Emma Watson','Movies','7/7f/Emma_Watson_2013.jpg'],
+['st29','Johnny Depp','Movies','2/2b/Johnny_Depp_2018.jpg'],
+['st30','Scarlett Johansson','Movies','6/6c/Scarlett_Johansson_2019.jpg'],
+['st38','Getaneh Kebede','Football'],
+['st39','Saladin Said','Football'],
+['st40','Abubeker Nassir','Football'],
+['st41','Shimelis Bekele','Football'],
+['st42','Tilahun Gessesse','Music'],
+['st43','Ali Birra','Music'],
+['st44','Hachalu Hundessa','Music'],
+['st45','Gigi','Music'],
+['st46','Rophnan','Music'],
+['st47','Kenenisa Bekele','Athletics'],
+['st48','Derartu Tulu','Athletics'],
+['st49','Liya Kebede','Movies'],
+['st50','Ruth Negga','Movies'],
+['st51','Girum Ermias','Movies']
+].map(([id,name,cat,url])=>{
+  const file=plain(name).replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
+  const srcs=[images/stickers/${file}.jpg]; if(url) srcs.push(W+url);
+  const et=['st18','st19','st20','st34','st35','st36'].includes(id)||+id.slice(2)>=38;
+  const emoji=id==='st37'?'🐆':name.split(' ').map(w=>w[0]).slice(0,2).join('');
+  return {id,name,cat,et,price:70,emoji,srcs};
+});
 
-    <!-- CART -->
-    <section id="cart" class="page-section hidden fade-in">
-      <h2 class="text-3xl font-extrabold mb-6">Your Cart</h2>
-      <div class="grid lg:grid-cols-3 gap-8">
-        
-        <div class="lg:col-span-2 space-y-4">
-          <div id="cart-items" class="space-y-4">
-            <!-- Cart items injected here -->
-          </div>
-          <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 flex justify-between items-center text-xl font-bold">
-            <span>Total:</span>
-            <span id="cart-total" class="text-brand-orange">0 ETB</span>
-          </div>
-        </div>
+function plain(s){return s.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase()}
+const $=id=>document.getElementById(id);
+const store={get(k,d){try{return JSON.parse(localStorage.getItem(k))??d}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+const all=[...goods,...stickers];
+let cart=store.get('emojiCart',[]);
+cart.forEach(i=>{const p=all.find(x=>x.id===i.id); if(p){i.price=p.price;i.name=p.name}});
+let cat='All';
 
-        <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 h-fit">
-          <h3 class="font-bold text-lg mb-4">Checkout Details</h3>
-          <form id="orderForm" action="https://api.web3forms.com/submit" method="POST" class="space-y-4">
-            <input type="hidden" name="access_key" value="e2897913-3afe-46d0-8c2b-2f88336a2394">
-            <input type="hidden" name="redirect" value="thanks.html">
-            <input type="hidden" name="subject" value="New Order from Emoji Advertising">
-            <input type="hidden" name="order_details" id="orderDetailsInput">
-            
-            <div>
-              <label class="text-sm font-medium mb-1 block">Full Name</label>
-              <input type="text" name="name" required class="w-full p-3 border border-slate-200 dark:border-slate-700 rounded-xl dark:bg-slate-800" placeholder="Abebe Kebede">
-            </div>
-            <div>
-              <label class="text-sm font-medium mb-1 block">Phone Number</label>
-              <input type="tel" name="phone" required class="w-full p-3 border border-slate-200 dark:border-slate-700 rounded-xl dark:bg-slate-800" placeholder="0912345678">
-            </div>
-            <div>
-              <label class="text-sm font-medium mb-1 block">Delivery Location</label>
-              <input type="text" name="location" required class="w-full p-3 border border-slate-200 dark:border-slate-700 rounded-xl dark:bg-slate-800" placeholder="Addis Ababa, Bole">
-            </div>
-            <button type="submit" onclick="prepareOrder(event)" class="w-full bg-brand-yellow text-brand-dark font-bold py-3 rounded-xl hover:bg-yellow-500 transition shadow-lg mt-2">Place Order via Email</button>
-          </form>
-        </div>
-      </div>
-    </section>
+// ፎቶ ካልተከፈተ ቀጣዩን ይሞክራል፤ ሁሉም ካልሠሩ ኢሞጂ/ፊደል ይታያል
+function nextImg(img){const l=img.dataset.next?img.dataset.next.split('|'):[];if(l.length){img.src=l.shift();img.dataset.next=l.join('|')}else img.remove()}
+const BG={Football:['bg-fb','⚽'],Music:['bg-mu','🎵'],Athletics:['bg-at','🏃'],Movies:['bg-mv','🎬']};
+function card(p,tall){const [bg,icon]=BG[p.cat]||['bg-goods',''];return <div class="box card overflow-hidden flex flex-col">
+ <div class="relative ${tall?'h-52':'h-40'} ${bg} flex items-center justify-center">
+ <div class="relative w-4/5 h-4/5 rounded-3xl border-4 border-white bg-white/95 shadow-xl -rotate-3 overflow-hidden flex items-center justify-center text-5xl font-extrabold text-orange-600">${p.emoji}
+ <img src="${p.srcs[0]}" data-next="${p.srcs.slice(1).join('|')}" onerror="nextImg(this)" alt="${p.name}" loading="lazy" class="absolute inset-0 w-full h-full ${tall?'object-cover object-top':'object-contain bg-white'}"></div>
+ ${tall?<span class="absolute top-2 left-2 text-xs font-bold bg-black/70 text-white rounded-full px-2 py-1">${icon} ${p.cat}</span>:''}${p.et?'<span class="absolute top-2 right-2 text-xl">🇪🇹</span>':''}</div>
+ <div class="p-3 flex flex-col flex-1"><h3 class="font-bold">${p.name}</h3><p class="text-orange-500 font-extrabold text-lg mt-auto">${p.price} ETB</p>
+ <button onclick="add('${p.id}')" class="mt-2 w-full bg-gradient-to-r from-orange-500 to-pink-500 text-white py-2 rounded-xl font-semibold active:scale-95">Add +</button></div></div>}
+const none='<p class="col-span-full text-center text-slate-500 py-10">Nothing found</p>';
 
-  </main>
+function renderGoods(){const q=plain($('q1').value);
+ $('goods-grid').innerHTML=goods.filter(p=>plain(p.name+' '+p.wiki.replace(/_/g,' ')).includes(q)).map(p=>card(p)).join('')||none;
+ $('home-grid').innerHTML=[...stickers.slice(0,2),...goods.slice(0,2)].map(p=>card(p,!!p.cat)).join('')}
 
-  <script>
-    // --- DATA ---
-    const stationeryData = [
-      { id: 's1', name: 'BIC Ballpoint Pen', price: 45, emoji: '🖊️' },
-      { id: 's2', name: 'Buna Blue Pen', price: 18, emoji: '🖊️' },
-      { id: 's3', name: 'Drawing Pencil', price: 15, emoji: '✏️' },
-      { id: 's4', name: 'Eraser', price: 18, emoji: '🧽' },
-      { id: 's5', name: 'Pencil Sharpener', price: 21, emoji: '🔪' },
-      { id: 's6', name: 'Ruler (30cm)', price: 45, emoji: '📏' },
-      { id: 's7', name: 'Scissors', price: 180, emoji: '✂️' },
-      { id: 's8', name: 'Glue Stick', price: 68, emoji: '🖇️' },
-      { id: 's9', name: 'Exercise Book', price: 100, emoji: '📒' },
-      { id: 's10', name: 'Colored Pencils (12pcs)', price: 85, emoji: '🖍️' },
-      { id: 's11', name: 'A4 Colored Paper (250)', price: 820, emoji: '📄' }
-    ];
+function renderStickers(){const q=plain($('q2').value.trim());
+ $('sticker-grid').innerHTML=stickers.filter(p=>(cat==='All'(cat==='Ethiopian'?p.et:p.cat===cat))&&plain(p.name+' '+p.cat+(p.et?' ethiopian':'')).includes(q)).map(p=>card(p,true)).join('')none;
+ $('chips').innerHTML=['All','Ethiopian',...new Set(stickers.map(s=>s.cat))].map(c=><button onclick="cat='${c}';renderStickers()" class="tab ${c===cat?'on':''} border border-orange-300 px-4 py-1.5 rounded-full text-sm">${c}</button>).join('')}
 
-    const stickerData = [
-      { id: 'st1', name: 'Lionel Messi', price: 150, img: 'https://upload.wikimedia.org/wikipedia/commons/b/b4/Lionel-Messi-Argentina-2022-FIFA-World-Cup_%28cropped%29.jpg', cat: 'Football' },
-      { id: 'st2', name: 'Cristiano Ronaldo', price: 150, img: 'https://upload.wikimedia.org/wikipedia/commons/8/8c/Cristiano_Ronaldo_2018.jpg', cat: 'Football' },
-      { id: 'st3', name: 'Pelé', price: 150, img: 'https://upload.wikimedia.org/wikipedia/commons/5/5e/Pele_con_brasil_%28cropped%29.jpg', cat: 'Football' },
-      { id: 'st4', name: 'Diego Maradona', price: 150, img: 'https://upload.wikimedia.org/wikipedia/commons/2/2b/Diego_Maradona_1986.jpg', cat: 'Football' },
-      { id: 'st5', name: 'Neymar Jr', price: 120, img: 'https://upload.wikimedia.org/wikipedia/commons/b/bb/Brazil_Star_Neymar_Jr.jpg', cat: 'Football' },
-      { id: 'st6', name: 'Kylian Mbappé', price: 120, img: 'https://upload.wikimedia.org/wikipedia/commons/2/26/Kevin_De_Bruyne_201807091.jpg', cat: 'Football' },
-      { id: 'st7', name: 'Mohamed Salah', price: 120, img: 'https://upload.wikimedia.org/wikipedia/commons/0/0e/Mohamed_Salah_2018.jpg', cat: 'Football' },
-      { id: 'st8', name: 'Ronaldinho', price: 120, img: 'https://upload.wikimedia.org/wikipedia/commons/e/e8/Ronaldinho_061115.jpg', cat: 'Football' },
-      { id: 'st9', name: 'Michael Jackson', price: 180, img: 'https://upload.wikimedia.org/wikipedia/commons/b/b9/Michael_Jackson_1984_%28cropped%29.jpg', cat: 'Music' },
-      { id: 'st10', name: 'Bob Marley', price: 160, img: 'https://upload.wikimedia.org/wikipedia/commons/2/22/Bob-Marley.jpg', cat: 'Music' },
-      { id: 'st11', name: 'Adele', price: 140, img: 'https://upload.wikimedia.org/wikipedia/commons/7/7c/Adele_2016_%28cropped%29.jpg', cat: 'Music' },
-      { id: 'st12', name: 'Ed Sheeran', price: 140, img: 'https://upload.wikimedia.org/wikipedia/commons/c/c1/Ed_Sheeran-6886_%28cropped%29.jpg', cat: 'Music' },
-      { id: 'st13', name: 'The Weeknd', price: 140, img: 'https://upload.wikimedia.org/wikipedia/commons/2/2e/The_Weeknd_2017.jpg', cat: 'Music' },
-      { id: 'st14', name: 'Drake', price: 130, img: 'https://upload.wikimedia.org/wikipedia/commons/3/3e/Drake_at_The_Weeknd_Concert.jpg', cat: 'Music' },
-      { id: 'st15', name: 'Rihanna', price: 150, img: 'https://upload.wikimedia.org/wikipedia/commons/8/8b/Rihanna_-_2018_Grammy_Awards.jpg', cat: 'Music' },
-      { id: 'st16', name: 'Taylor Swift', price: 150, img: 'https://upload.wikimedia.org/wikipedia/commons/b/b2/Taylor_Swift_2019_%28cropped%29.jpg', cat: 'Music' },
-      { id: 'st17', name: 'Beyoncé', price: 150, img: 'https://upload.wikimedia.org/wikipedia/commons/1/17/Beyonce_2011.jpg', cat: 'Music' },
-      { id: 'st18', name: 'Teddy Afro', price: 120, img: 'https://upload.wikimedia.org/wikipedia/commons/e/e2/Teddy_Afro_2019.jpg', cat: 'Ethiopian Music' },
-      { id: 'st19', name: 'Mahmoud Ahmed', price: 120, img: 'https://upload.wikimedia.org/wikipedia/commons/e/e4/Mahmoud_Ahmed_2012.jpg', cat: 'Ethiopian Music' },
-      { id: 'st20', name: 'Aster Aweke', price: 120, img: 'https://upload.wikimedia.org/wikipedia/commons/1/1c/Aster_Aweke.jpg', cat: 'Ethiopian Music' },
-      { id: 'st21', name: 'Leonardo DiCaprio', price: 160, img: 'https://upload.wikimedia.org/wikipedia/commons/2/2e/Leonardo_DiCaprio_2014.jpg', cat: 'Movies' },
-      { id: 'st22', name: 'Will Smith', price: 140, img: 'https://upload.wikimedia.org/wikipedia/commons/7/7f/Will_Smith_2019.jpg', cat: 'Movies' },
-      { id: 'st23', name: 'Dwayne Johnson', price: 140, img: 'https://upload.wikimedia.org/wikipedia/commons/1/1f/Dwayne_Johnson_2014_%28cropped%29.jpg', cat: 'Movies' },
-      { id: 'st24', name: 'Robert Downey Jr.', price: 160, img: 'https://upload.wikimedia.org/wikipedia/commons/9/94/Robert_Downey_Jr_2014_Comic_Con_%28cropped%29.jpg', cat: 'Movies' },
-      { id: 'st25', name: 'Zendaya', price: 140, img: 'https://upload.wikimedia.org/wikipedia/commons/2/2a/Zendaya_2019_%28cropped%29.jpg', cat: 'Movies' },
-      { id: 'st26', name: 'Tom Cruise', price: 150, img: 'https://upload.wikimedia.org/wikipedia/commons/3/3f/Tom_Cruise_2019.jpg', cat: 'Movies' },
-      { id: 'st27', name: 'Keanu Reeves', price: 150, img: 'https://upload.wikimedia.org/wikipedia/commons/4/4b/Keanu_Reeves_2014.jpg', cat: 'Movies' },
-      { id: 'st28', name: 'Emma Watson', price: 130, img: 'https://upload.wikimedia.org/wikipedia/commons/7/7f/Emma_Watson_2013.jpg', cat: 'Movies' },
-      { id: 'st29', name: 'Johnny Depp', price: 140, img: 'https://upload.wikimedia.org/wikipedia/commons/2/2b/Johnny_Depp_2018.jpg', cat: 'Movies' },
-      { id: 'st30', name: 'Scarlett Johansson', price: 150, img: 'https://upload.wikimedia.org/wikipedia/commons/6/6c/Scarlett_Johansson_2019.jpg', cat: 'Movies' }
-    ];
+// የዕቃዎች ፎቶ ከዊኪፔዲያ (የራስዎ ፎቶ ካለ እሱ ይቀድማል)
+async function loadPhotos(){await Promise.all(goods.map(async p=>{try{
+ const r=await fetch('https://en.wikipedia.org/api/rest_v1/page/summary/'+p.wiki);const d=await r.json();
+ if(d.thumbnail) p.srcs.push(d.thumbnail.source)}catch(e){}}));renderGoods()}
 
-    // --- STATE ---
-    let cart = JSON.parse(localStorage.getItem('emojiCart')) || [];
-    let isDark = localStorage.getItem('emojiDark') === 'true';
+function go(id){document.querySelectorAll('.page').forEach(s=>s.classList.toggle('hidden',s.id!==id));
+ document.querySelectorAll('nav .tab').forEach(b=>b.classList.toggle('on',b.dataset.p===id));scrollTo(0,0)}
+function dark(){store.set('emojiDark',document.documentElement.classList.toggle('dark'))}
+function toast(m){const t=$('toast');t.textContent=m;t.classList.remove('hidden');clearTimeout(t.h);t.h=setTimeout(()=>t.classList.add('hidden'),3000)}
 
-    // --- INITIALIZATION ---
-    window.onload = () => {
-      if (isDark) document.documentElement.classList.add('dark');
-      lucide.createIcons();
-      renderStationery();
-      renderStickers();
-      renderHomeFeatured();
-      updateCartUI();
-      calcBanner();
-      calcSticker();
-    };
+const num=(id,d)=>Math.max(0,parseFloat($(id).value)||d);
+const banner=()=>{const w=num('bw',0),h=num('bh',0),q=Math.max(1,Math.round(num('bq',1)));return{w,h,q,each:w*h*200}};
 
-    // --- THEME & NAV ---
-    function toggleDarkMode() {
-      isDark = !isDark;
-      document.documentElement.classList.toggle('dark');
-      localStorage.setItem('emojiDark', isDark);
-    }
+// A4 = 21cm x 29.7cm = 623.7 cm² = 70 ETB
+const A4_AREA=21*29.7;
+const stickerCalc=()=>{const w=num('sw',0),h=num('sh',0),q=Math.max(1,Math.round(num('sq',1)));return{w,h,q,each:((w*h)/A4_AREA)*70}};
 
-    function toggleMobileMenu() {
-      const menu = document.getElementById('mobile-menu');
-      menu.classList.toggle('hidden');
-      lucide.createIcons();
-    }
+function calc(){
+ const b=banner();$('bt').textContent=(b.each*b.q).toFixed(2)+' ETB';
+ const s=stickerCalc();$('st').textContent=(s.each*s.q).toFixed(2)+' ETB';
+}
 
-    function navTo(id, btn) {
-      document.querySelectorAll('.page-section').forEach(el => {
-        el.classList.add('hidden');
-        el.classList.remove('block');
-      });
-      document.getElementById(id).classList.add('block');
-      document.getElementById(id).classList.remove('hidden');
+function push(item){const e=cart.find(i=>i.id===item.id);e?e.qty+=item.qty:cart.push(item);save();toast('✅ Added to Order')}
+function add(id){const p=all.find(x=>x.id===id);push({id,name:p.name,price:p.price,qty:1})}
+function addBanner(){const b=banner();if(!b.each)return toast('ትክክለኛ መጠን ያስገቡ');push({id:ban_${b.w}x${b.h},name:Banner ${b.w}×${b.h} m,price:b.each,qty:b.q})}
+function addSheets(){const s=stickerCalc();if(!s.each)return toast('ትክክለኛ መጠን ያስገቡ');push({id:stk_${s.w}x${s.h},name:Sticker ${s.w}×${s.h} cm,price:Number(s.each.toFixed(2)),qty:s.q})}
 
-      // Highlight active button
-      if(btn && btn.classList.contains('nav-btn')) {
-        document.querySelectorAll('.nav-btn').forEach(b => {
-          b.classList.remove('bg-brand-orange', 'text-white');
-          b.classList.add('text-slate-600', 'dark:text-slate-400', 'hover:bg-slate-100', 'dark:hover:bg-slate-800');
-        });
-        btn.classList.remove('text-slate-600', 'dark:text-slate-400', 'hover:bg-slate-100', 'dark:hover:bg-slate-800');
-        btn.classList.add('bg-brand-orange', 'text-white');
-      }
-    }
+function qty(id,n){const i=cart.find(x=>x.id===id);i.qty+=n;if(i.qty<1)cart=cart.filter(x=>x!==i);save()}
+const sum=()=>cart.reduce((s,i)=>s+i.price*i.qty,0);
+function save(){store.set('emojiCart',cart);
+ $('badge').textContent=cart.reduce((s,i)=>s+i.qty,0);$('total').textContent=sum().toFixed(2)+' ETB';
+ $('items').innerHTML=cart.map(i=><div class="box p-3 flex justify-between items-center gap-2"><div><b>${i.name}</b><p class="text-orange-500">${(i.price*i.qty).toFixed(2)} ETB</p></div>
+ <div class="flex items-center gap-3"><button onclick="qty('${i.id}',-1)" class="w-8 h-8 rounded-full border">−</button><b>${i.qty}</b><button onclick="qty('${i.id}',1)" class="w-8 h-8 rounded-full border">+</button><button onclick="qty('${i.id}',-${i.qty})">🗑️</button></div></div>).join('')||'<div class="box p-8 text-center text-slate-500">Your order is empty</div>'}
 
-    // --- RENDER PRODUCTS ---
-    function renderStationery() {
-      const query = document.getElementById('search-stationery').value.toLowerCase();
-      const filtered = stationeryData.filter(p => p.name.toLowerCase().includes(query));
-      
-      document.getElementById('stationery-grid').innerHTML = filtered.map(p => `
-        <div class="bg-white dark:bg-slate-900 p-5 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 hover:shadow-md transition group">
-          <div class="text-5xl text-center mb-4 group-hover:scale-110 transition duration-300">${p.emoji}</div>
-          <h3 class="font-bold text-lg mb-1 truncate">${p.name}</h3>
-          <p class="text-brand-orange font-extrabold text-xl mb-4">${p.price} ETB</p>
-          <button onclick="addToCart('${p.id}', '${p.name}', ${p.price})" class="w-full bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-white py-2.5 rounded-xl font-semibold hover:bg-brand-orange hover:text-white transition">Add to Cart</button>
-        </div>
-      `).join('');
-    }
+async function order(e){e.preventDefault();if(!cart.length)return toast('Your order is empty');
+ $('details').value=cart.map(i=>${i.name} x${i.qty} = ${(i.price*i.qty).toFixed(2)} ETB).join('\n')+\nTOTAL: ${sum().toFixed(2)} ETB;
+ const btn=$('send');btn.disabled=true;btn.textContent='በመላክ ላይ...';
+ try{const r=await fetch('https://api.web3forms.com/submit',{method:'POST',body:new FormData($('form'))});const d=await r.json();if(!d.success)throw 0;
+ const f=new FormData($('form'));store.set('lastOrder',{items:cart,total:sum(),name:f.get('name'),phone:f.get('phone'),date:new Date().toISOString(),orderNo:'EMO-'+Date.now().toString().slice(-5)});
+ cart=[];save();$('form').reset();toast('🎉 ትዕዛዝዎ ተልኳል። እናመሰግናለን!');setTimeout(()=>location.href='thanks.html',1500)}
+ catch(x){toast('አልተላከም። ኢንተርኔትዎን አረጋግጠው ደግመው ይሞክሩ')}
+ btn.disabled=false;btn.textContent='ትዕዛዝ ላክ'}
 
-    function renderHomeFeatured() {
-      document.getElementById('home-grid').innerHTML = stationeryData.slice(0,4).map(p => `
-        <div class="bg-white dark:bg-slate-900 p-5 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 hover:shadow-md transition">
-          <div class="text-5xl text-center mb-4">${p.emoji}</div>
-          <h3 class="font-bold text-lg mb-1 truncate">${p.name}</h3>
-          <p class="text-brand-orange font-extrabold text-xl mb-4">${p.price} ETB</p>
-          <button onclick="addToCart('${p.id}', '${p.name}', ${p.price})" class="w-full bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-white py-2.5 rounded-xl font-semibold hover:bg-brand-orange hover:text-white transition">Add to Cart</button>
-        </div>
-      `).join('');
-    }
-
-    function renderStickers() {
-      const query = document.getElementById('search-stickers').value.toLowerCase();
-      const filtered = stickerData.filter(p => p.name.toLowerCase().includes(query) || p.cat.toLowerCase().includes(query));
-
-      document.getElementById('stickers-grid').innerHTML = filtered.map(p => `
-        <div class="bg-white dark:bg-slate-900 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 overflow-hidden hover:shadow-lg transition group">
-          <div class="h-48 overflow-hidden bg-slate-200 relative">
-            <img src="${p.img}" alt="${p.name}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.src='https://via.placeholder.com/300x300?text=No+Image'">
-            <span class="absolute top-2 right-2 bg-black/60 text-white text-xs px-2 py-1 rounded-full backdrop-blur-sm">${p.cat}</span>
-          </div>
-          <div class="p-4">
-            <h3 class="font-bold text-lg mb-1 truncate">${p.name}</h3>
-            <p class="text-brand-orange font-extrabold text-xl mb-3">${p.price} ETB</p>
-            <button onclick="addToCart('${p.id}', '${p.name}', ${p.price})" class="w-full bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-white py-2 rounded-xl font-semibold hover:bg-brand-orange hover:text-white transition">Add to Cart</button>
-          </div>
-        </div>
-      `).join('');
-    }
-
-    // --- CALCULATORS ---
-    function calcBanner() {
-      const w = parseFloat(document.getElementById('banner-w').value) || 0;
-      const h = parseFloat(document.getElementById('banner-h').value) || 0;
-      const q = parseInt(document.getElementById('banner-qty').value) || 1;
-      document.getElementById('banner-total').innerText = `${(w * h * 200 * q).toFixed(2)} ETB`;
-    }
-
-    function calcSticker() {
-      const q = parseInt(document.getElementById('sticker-qty').value) || 1;
-      document.getElementById('sticker-total').innerText = `${(q * 17).toFixed(2)} ETB`;
-    }
-
-    // --- CART LOGIC ---
-    function addToCart(id, name, price) {
-      const existing = cart.find(item => item.id === id);
-      if (existing) {
-        existing.qty++;
-      } else {
-        cart.push({ id, name, price, qty: 1 });
-      }
-      saveCart();
-      updateCartUI();
-    }
-
-    function addCustom(name, priceText) {
-      const price = parseFloat(priceText.replace(/[^0-9.]/g, ''));
-      const id = 'custom_' + Date.now();
-      cart.push({ id, name, price, qty: 1 });
-      saveCart();
-      updateCartUI();
-      navTo('cart', document.querySelector('.nav-btn:nth-child(5)'));
-    }
-
-    function removeFromCart(id) {
-      cart = cart.filter(item => item.id !== id);
-      saveCart();
-      updateCartUI();
-    }
-
-    function updateQty(id, change) {
-      const item = cart.find(i => i.id === id);
-      if (item) {
-        item.qty += change;
-        if (item.qty <= 0) return removeFromCart(id);
-        saveCart();
-        updateCartUI();
-      }
-    }
-
-    function saveCart() {
-      localStorage.setItem('emojiCart', JSON.stringify(cart));
-    }
-
-    function updateCartUI() {
-      const container = document.getElementById('cart-items');
-      const totalDisplay = document.getElementById('cart-total');
-      const badge = document.getElementById('cart-badge');
-
-      const totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
-      if (totalQty > 0) {
-        badge.innerText = totalQty;
-        badge.classList.remove('hidden');
-      } else {
-        badge.classList.add('hidden');
-      }
-
-      if (cart.length === 0) {
-        container.innerHTML = `<div class="text-center py-10 bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800"><p class="text-slate-500">Your cart is empty.</p></div>`;
-        totalDisplay.innerText = `0 ETB`;
-        return;
-      }
-
-      let total = 0;
-      container.innerHTML = cart.map(item => {
-        total += (item.price * item.qty);
-        return `
-          <div class="bg-white dark:bg-slate-900 p-4 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 flex justify-between items-center">
-            <div>
-              <h4 class="font-bold text-lg">${item.name}</h4>
-              <p class="text-brand-orange font-semibold">${item.price} ETB</p>
-            </div>
-            <div class="flex items-center gap-3">
-              <button onclick="updateQty('${item.id}', -1)" class="w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center hover:bg-slate-200"><i data-lucide="minus" class="w-4 h-4"></i></button>
-              <span class="font-bold w-4 text-center">${item.qty}</span>
-              <button onclick="updateQty('${item.id}', 1)" class="w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center hover:bg-slate-200"><i data-lucide="plus" class="w-4 h-4"></i></button>
-              <button onclick="removeFromCart('${item.id}')" class="text-red-500 hover:bg-red-50 p-2 rounded-lg ml-2"><i data-lucide="trash-2" class="w-5 h-5"></i></button>
-            </div>
-          </div>
-        `;
-      }).join('');
-      
-      lucide.createIcons();
-      totalDisplay.innerText = `${total.toFixed(2)} ETB`;
-    }
-
-    // --- ORDER SUBMISSION ---
-    function prepareOrder(e) {
-      if (cart.length === 0) {
-        e.preventDefault();
-        alert("Your cart is empty!");
-        return;
-      }
-      let orderText = "🛒 NEW ORDER (EMOJI ADVERTISING)\n\n";
-      let total = 0;
-      cart.forEach(item => {
-        let lineTotal = item.price * item.qty;
-        total += lineTotal;
-        orderText += `▪️ ${item.name} x${item.qty} = ${lineTotal.toFixed(2)} ETB\n`;
-      });
-      orderText += `\n💰 TOTAL: ${total.toFixed(2)} ETB\n`;
-      document.getElementById('orderDetailsInput').value = orderText;
-
-      localStorage.setItem('lastOrder', JSON.stringify({
-        items: cart,
-        total: total,
-        name: document.querySelector('input[name="name"]').value,
-        phone: document.querySelector('input[name="phone"]').value,
-        date: new Date().toISOString(),
-        orderNo: 'EMO-' + Date.now().toString().slice(-5)
-      }));
-    }
-  </script>
+if(store.get('emojiDark',false))document.documentElement.classList.add('dark');
+renderGoods();renderStickers();calc();save();loadPhotos();
+</script>
 </body>
 </html>
+ 
